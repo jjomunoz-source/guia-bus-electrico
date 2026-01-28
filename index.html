@@ -14,12 +14,18 @@
     <p>Uso correcto y eficiente del bus</p>
   </header>
 
-  <main id="menu">
+ <main id="app">
+
+  <section id="menu">
     <button onclick="openModule('conduccion')">🚍 Conducción eficiente</button>
     <button onclick="openModule('regeneracion')">🔋 Frenado regenerativo</button>
     <button onclick="openModule('clima')">❄️ Uso del aire acondicionado</button>
     <button onclick="openModule('cabina')">💡 Cabina y controles</button>
-  </main>
+  </section>
+
+  <section id="content" style="display:none;"></section>
+
+</main>
 
   <section id="module" class="hidden">
     <button class="back" onclick="goBack()">⬅ Volver</button>
@@ -38,3 +44,4 @@
   <script src="app.js"></script>
 </body>
 </html>
+
