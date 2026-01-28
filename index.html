@@ -15,18 +15,41 @@
   </header>
 
  <main id="app">
+  <h1>Guía Bus Eléctrico</h1>
 
-  <section id="menu">
-    <button onclick="openModule('conduccion')">🚍 Conducción eficiente</button>
-    <button onclick="openModule('regeneracion')">🔋 Frenado regenerativo</button>
-    <button onclick="openModule('clima')">❄️ Uso del aire acondicionado</button>
-    <button onclick="openModule('cabina')">💡 Cabina y controles</button>
+  <div class="menu">
+    <button onclick="mostrarModulo('regen')">🔋 Frenado regenerativo</button>
+    <button disabled>🚍 Conducción eficiente</button>
+    <button disabled>❄️ Uso del A/C</button>
+    <button disabled>💡 Cabina y sistemas</button>
+  </div>
+
+  <section id="regen" class="modulo oculto">
+    <h2>🔋 Frenado regenerativo</h2>
+
+    <p><strong>¿Cómo funciona?</strong></p>
+    <p>
+      En el bus eléctrico FOTON U12, la regeneración de energía se activa
+      al presionar suavemente el pedal de freno, sin llegar a un frenado brusco.
+    </p>
+
+    <p><strong>Buenas prácticas:</strong></p>
+    <ul>
+      <li>Anticipar detenciones</li>
+      <li>Presionar el freno de forma progresiva</li>
+      <li>Evitar frenadas fuertes innecesarias</li>
+    </ul>
+
+    <p><strong>Beneficios:</strong></p>
+    <ul>
+      <li>Mayor autonomía</li>
+      <li>Menor desgaste de frenos</li>
+      <li>Conducción más suave y eficiente</li>
+    </ul>
+
+    <button onclick="volver()">⬅ Volver al menú</button>
   </section>
-
-  <section id="content" style="display:none;"></section>
-
 </main>
-
   <section id="module" class="hidden">
     <button class="back" onclick="goBack()">⬅ Volver</button>
     <div id="moduleContent"></div>
@@ -44,4 +67,5 @@
   <script src="app.js"></script>
 </body>
 </html>
+
 
