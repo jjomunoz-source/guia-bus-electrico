@@ -1,68 +1,55 @@
-const menu = document.getElementById("menu");
-const moduleSection = document.getElementById("module");
-const moduleContent = document.getElementById("moduleContent");
+function openModule(modulo) {
+  const menu = document.getElementById("menu");
+  const content = document.getElementById("content");
 
-function openModule(module) {
-  menu.classList.add("hidden");
-  moduleSection.classList.remove("hidden");
+  menu.style.display = "none";
+  content.style.display = "block";
 
-  let content = "";
-
-  if (module === "conduccion") {
-    content = `
-      <h2>🚍 Conducción eficiente</h2>
-      <p>Una conducción eficiente reduce el consumo de energía y el desgaste del bus.</p>
-      <ul>
-        <li>Aceleraciones suaves y progresivas</li>
-        <li>Anticipar el tránsito y las detenciones</li>
-        <li>Evitar aceleraciones innecesarias</li>
-        <li>Mantener velocidad constante</li>
-      </ul>
-    `;
-  }
-
-  if (module === "regeneracion") {
-    content = `
+  if (modulo === "regeneracion") {
+    content.innerHTML = `
       <h2>🔋 Frenado regenerativo</h2>
-      <p>El bus recarga energía al utilizar correctamente el pedal de freno.</p>
+
+      <p><strong>¿Cómo funciona?</strong></p>
+      <p>
+        En el bus eléctrico FOTON U12, la regeneración de energía se activa
+        al presionar suavemente el pedal de freno, sin llegar a un frenado brusco.
+      </p>
+
+      <p><strong>Buenas prácticas:</strong></p>
       <ul>
-        <li>Presionar suavemente el pedal al inicio</li>
-        <li>No es necesario llegar al frenado completo</li>
-        <li>La regeneración se produce en la primera fase del pedal</li>
-        <li>Anticipar detenciones maximiza la recuperación de energía</li>
+        <li>Anticipar detenciones</li>
+        <li>Presionar el freno de forma progresiva</li>
+        <li>Evitar frenadas fuertes innecesarias</li>
       </ul>
-      <p><strong>Nota:</strong> Un uso brusco del freno reduce la eficiencia del sistema.</p>
+
+      <p><strong>Beneficios:</strong></p>
+      <ul>
+        <li>Mayor autonomía</li>
+        <li>Menor desgaste del sistema de frenos</li>
+        <li>Conducción más suave y eficiente</li>
+      </ul>
+
+      <button onclick="goBack()">⬅ Volver al menú</button>
     `;
   }
 
-  if (module === "clima") {
-    content = `
-      <h2>❄️ Uso del aire acondicionado</h2>
-      <p>El sistema de climatización impacta directamente en la autonomía.</p>
-      <ul>
-        <li>Usar temperaturas moderadas</li>
-        <li>Evitar cambios constantes de configuración</li>
-        <li>Apagar el A/C cuando no sea necesario</li>
-      </ul>
-    `;
+  // módulos futuros (dejamos preparado)
+  if (modulo === "conduccion") {
+    content.innerHTML = `<h2>🚍 Conducción eficiente</h2><p>Módulo en desarrollo</p><button onclick="goBack()">⬅ Volver</button>`;
   }
 
-  if (module === "cabina") {
-    content = `
-      <h2>💡 Cabina y controles</h2>
-      <ul>
-        <li>Ajustar correctamente el asiento</li>
-        <li>Usar suspensión según condiciones del camino</li>
-        <li>Encender luces solo cuando corresponde</li>
-        <li>Evitar uso innecesario de sistemas auxiliares</li>
-      </ul>
-    `;
+  if (modulo === "clima") {
+    content.innerHTML = `<h2>❄️ Uso del aire acondicionado</h2><p>Módulo en desarrollo</p><button onclick="goBack()">⬅ Volver</button>`;
   }
 
-  moduleContent.innerHTML = content;
+  if (modulo === "cabina") {
+    content.innerHTML = `<h2>💡 Cabina y controles</h2><p>Módulo en desarrollo</p><button onclick="goBack()">⬅ Volver</button>`;
+  }
 }
 
 function goBack() {
-  moduleSection.classList.add("hidden");
-  menu.classList.remove("hidden");
+  document.getElementById("content").style.display = "none";
+  document.getElementById("menu").style.display = "block";
 }
+
+
