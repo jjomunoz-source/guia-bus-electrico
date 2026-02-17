@@ -1,4 +1,4 @@
-const CACHE_NAME = "bus-electrico-v4";
+const CACHE_NAME = "bus-electrico-v5";
 
 const FILES_TO_CACHE = [
   "./",
@@ -31,6 +31,7 @@ self.addEventListener("fetch", event => {
     caches.match(event.request).then(response => response || fetch(event.request))
   );
 });
+
 
 
 
