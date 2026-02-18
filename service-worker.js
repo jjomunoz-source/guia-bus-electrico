@@ -1,4 +1,4 @@
-const CACHE_NAME = "bus-electrico-v9";
+const CACHE_NAME = "bus-electrico-v10";
 
 const FILES_TO_CACHE = [
   "./",
@@ -50,6 +50,7 @@ function abrirRecorrido(nombre) {
 function volverRecorridos() {
   location.reload();
 }
+
 
 
 
