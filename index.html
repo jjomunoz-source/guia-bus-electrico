@@ -3,300 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guía Bus Eléctrico</title>
+  <title>STU – Plataforma Operativa</title>
 
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header class="header-corporativo">
+<!-- HEADER CORPORATIVO -->
+<header class="header-corporativo">
   <div class="header-contenido">
     <img src="logo-stu.png" alt="STU" class="logo">
     <div class="titulo-header">
-      <h1>Guía Operativa – Buses Eléctricos</h1>
+      <h1>Plataforma Operativa</h1>
       <p>STU | Uso Interno Área de Operaciones</p>
     </div>
   </div>
 </header>
 
-</section>
+<main>
 
-    <h1>Guía Bus Eléctrico</h1>
-    <p>Uso correcto y eficiente del bus</p>
-  </header>
+  <!-- MENÚ PRINCIPAL -->
+  <div class="menu">
+    <button onclick="mostrarModulo('protocolo')">
+      🔋 Protocolo Buses Eléctricos
+    </button>
 
-  <main>
+    <button onclick="mostrarModulo('directorio')">
+      📞 Directorio Jefaturas
+    </button>
 
-    <!-- MENÚ PRINCIPAL -->
-<div class="menu">
+    <button onclick="mostrarModulo('incidencias')">
+      ⚠ Reporte de Incidencias
+    </button>
 
-  <button onclick="mostrarModulo('protocolo')">
-    🔋 Protocolo Buses Eléctricos
-  </button>
+    <button onclick="mostrarModulo('recorridos')">
+      🗺 Recorridos Operativos
+    </button>
+  </div>
 
-  <button onclick="mostrarModulo('directorio')">
-    📞 Directorio Jefaturas
-  </button>
+  <!-- ================= PROTOCOLO ================= -->
 
-  <button onclick="mostrarModulo('incidencias')">
-    ⚠ Reporte de Incidencias
-  </button>
+  <section id="protocolo" class="modulo oculto">
+    <h2>Protocolo Buses Eléctricos</h2>
 
-  <button onclick="mostrarModulo('recorridos')">
-    🗺 Recorridos Operativos
+    <button onclick="mostrarModulo('regen')">🔋 Frenado regenerativo</button>
+    <button onclick="mostrarModulo('conduccion')">🚍 Conducción eficiente</button>
+    <button onclick="mostrarModulo('ac')">❄ Uso del A/C</button>
+    <button onclick="mostrarModulo('cabina')">💡 Cabina y sistemas</button>
 
-</button>
+    <br><br>
+    <button onclick="volver()">⬅ Volver</button>
+  </section>
 
+  <section id="regen" class="modulo oculto">
+    <h2>Frenado regenerativo</h2>
+    <p>Aplicar frenado progresivo para maximizar recuperación de energía.</p>
+    <button onclick="volver()">⬅ Volver</button>
+  </section>
+
+  <section id="conduccion" class="modulo oculto">
+    <h2>Conducción eficiente</h2>
+    <p>Aceleraciones suaves y anticipación del tránsito.</p>
+    <button onclick="volver()">⬅ Volver</button>
+  </section>
+
+  <section id="ac" class="modulo oculto">
+    <h2>Uso eficiente del Aire Acondicionado</h2>
+    <p>Evitar uso innecesario y temperaturas extremas.</p>
+    <button onclick="volver()">⬅ Volver</button>
+  </section>
+
+  <section id="cabina" class="modulo oculto">
+    <h2>Cabina y sistemas</h2>
+    <p>Revisión de indicadores y testigos antes de iniciar servicio.</p>
+    <button onclick="volver()">⬅ Volver</button>
+  </section>
+
+  <!-- ================= DIRECTORIO ================= -->
+
+  <section id="directorio" class="modulo oculto">
+    <h2>Directorio Operativo STU</h2>
+    <p class="nota-interna">Uso interno – Contactos de jefaturas e inspección</p>
+
+    <h3 class="categoria">Turno AM</h3>
+    <div class="contacto">
+      <strong>Jefes de Operaciones</strong>
+      <p>José Bustamante – <a href="tel:+56968341709">968341709</a></p>
+      <p>Gabriel Cornejo – <a href="tel:+56977964669">977964669</a></p>
     </div>
 
-    <!-- MÓDULO REGENERACIÓN -->
-    <section id="regen" class="modulo oculto">
-      <h2>🔋 Frenado regenerativo</h2>
+    <br>
+    <button onclick="volver()">⬅ Volver</button>
+  </section>
 
-      <p><strong>¿Cómo funciona?</strong></p>
-      <p>
-        En el bus eléctrico FOTON U12, la regeneración de energía se activa
-        al presionar suavemente el pedal de freno, sin llegar a un frenado brusco.
-      </p>
+  <!-- ================= INCIDENCIAS ================= -->
 
-      <p><strong>Buenas prácticas:</strong></p>
-      <ul>
-        <li>Anticipar detenciones</li>
-        <li>Presionar el freno de forma progresiva</li>
-        <li>Evitar frenadas fuertes innecesarias</li>
-      </ul>
+  <section id="incidencias" class="modulo oculto">
+    <h2>Reporte de Incidencias</h2>
+    <p>Para reportar incidencias operativas utilice el formulario oficial:</p>
 
-      <p><strong>Beneficios:</strong></p>
-      <ul>
-        <li>Mayor autonomía</li>
-        <li>Menor desgaste de frenos</li>
-        <li>Conducción más suave</li>
-      </ul>
+    <a href="https://forms.office.com/" target="_blank" class="btn-manual">
+      ⚠ Abrir Formulario de Incidencias
+    </a>
 
-      <button onclick="volver()">⬅ Volver al menú</button>
-    </section>
-    
-<!-- MÓDULO CONDUCCIÓN EFICIENTE -->
-<section id="conduccion" class="modulo oculto">
-  <h2>🚍 Conducción eficiente</h2>
+    <br><br>
+    <button onclick="volver()">⬅ Volver</button>
+  </section>
 
-  <p><strong>¿Qué es la conducción eficiente?</strong></p>
-  <p>
-    Es una forma de manejar el bus eléctrico que busca aprovechar al máximo
-    la energía disponible, reduciendo consumos innecesarios y aumentando la
-    autonomía del vehículo.
-  </p>
+  <!-- ================= RECORRIDOS ================= -->
 
-  <p><strong>Buenas prácticas:</strong></p>
-  <ul>
-    <li>Aceleraciones suaves y progresivas</li>
-    <li>Mantener velocidad constante cuando sea posible</li>
-    <li>Anticipar el tránsito y las detenciones</li>
-    <li>Evitar aceleraciones y frenadas bruscas</li>
-  </ul>
+  <section id="recorridos" class="modulo oculto">
+    <h2>Recorridos Operativos</h2>
 
-  <p><strong>Errores comunes:</strong></p>
-  <ul>
-    <li>Acelerar a fondo sin necesidad</li>
-    <li>Frenar bruscamente sin anticipación</li>
-    <li>Conducir con impulsividad</li>
-  </ul>
+    <h3>Zona D</h3>
+    <div class="grid-recorridos">
+      <button>D01</button>
+      <button>D02</button>
+      <button>D03</button>
+      <button>D03c</button>
+      <button>D07</button>
+      <button>D07c</button>
+      <button>D09</button>
+      <button>D10</button>
+      <button>D11</button>
+      <button>D15</button>
+      <button>D18</button>
+      <button>D20</button>
+    </div>
 
-  <p><strong>Beneficios:</strong></p>
-  <ul>
-    <li>Mayor autonomía del bus</li>
-    <li>Menor desgaste de batería y frenos</li>
-    <li>Viaje más cómodo para los pasajeros</li>
-  </ul>
+    <h3>Servicio Especial</h3>
+    <div class="grid-recorridos">
+      <button>420</button>
+    </div>
 
-  <button onclick="volver()">⬅ Volver al menú</button>
-</section>
+    <br>
+    <button onclick="volver()">⬅ Volver</button>
+  </section>
 
-    <!-- MÓDULO USO DEL AIRE ACONDICIONADO -->
-<section id="ac" class="modulo oculto">
-  <h2>❄️ Uso eficiente del Aire Acondicionado</h2>
+</main>
 
-  <p><strong>¿Por qué es importante?</strong></p>
-  <p>
-    El sistema de climatización es uno de los mayores consumidores de energía
-    en un bus eléctrico. Un uso incorrecto puede reducir considerablemente la
-    autonomía del vehículo.
-  </p>
+<footer>
+  STU – Santiago Transporte Urbano |
+  Plataforma Operativa |
+  Versión 1.0 – Uso Interno
+</footer>
 
-  <p><strong>Buenas prácticas:</strong></p>
-  <ul>
-    <li>Usar el A/C solo cuando sea necesario</li>
-    <li>Mantener puertas cerradas durante el funcionamiento</li>
-    <li>Evitar temperaturas extremadamente bajas</li>
-    <li>Apagar el sistema en paradas prolongadas</li>
-  </ul>
+<script>
+function mostrarModulo(id) {
+  document.querySelectorAll(".modulo").forEach(m => {
+    m.classList.add("oculto");
+  });
+  document.getElementById(id).classList.remove("oculto");
+}
 
-  <p><strong>Errores comunes:</strong></p>
-  <ul>
-    <li>Usar A/C con puertas abiertas</li>
-    <li>Configurar temperatura mínima innecesariamente</li>
-    <li>Mantener el sistema activo sin pasajeros</li>
-  </ul>
+function volver() {
+  document.querySelectorAll(".modulo").forEach(m => {
+    m.classList.add("oculto");
+  });
+}
+</script>
 
-  <p><strong>Beneficios:</strong></p>
-  <ul>
-    <li>Mayor autonomía del bus</li>
-    <li>Menor desgaste del sistema</li>
-    <li>Confort térmico eficiente para pasajeros</li>
-  </ul>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./service-worker.js");
+  }
+</script>
 
-  <button onclick="volver()">⬅ Volver al menú</button>
-</section>
-
-    <!-- MÓDULO CABINA Y SISTEMAS -->
-<section id="cabina" class="modulo oculto">
-  <h2>💡 Cabina y sistemas del conductor</h2>
-
-  <p><strong>Objetivo del módulo:</strong></p>
-  <p>
-    Conocer correctamente la instrumentación de cabina permite detectar fallas
-    a tiempo, operar el bus de forma segura y evitar daños innecesarios.
-  </p>
-
-  <p><strong>Elementos clave de la cabina:</strong></p>
-  <ul>
-    <li>Panel de instrumentos</li>
-    <li>Indicadores de batería y consumo</li>
-    <li>Testigos luminosos</li>
-    <li>Sistemas de iluminación</li>
-    <li>Controles auxiliares</li>
-  </ul>
-
-  <p><strong>Buenas prácticas:</strong></p>
-  <ul>
-    <li>Verificar testigos antes de iniciar servicio</li>
-    <li>No ignorar alertas en el tablero</li>
-    <li>Reportar fallas recurrentes</li>
-    <li>Mantener cabina ordenada y funcional</li>
-  </ul>
-
-  <p><strong>Acceso a manual:</strong></p>
-  <p>
-    Consulta el manual de usuario para identificar correctamente cada indicador
-    y sistema del bus.
-  </p>
-
-  <a href="manual/cabina.html" class="btn-manual">
-    📘 Ver manual de cabina
-  </a>
-
-  <br><br>
-  <button onclick="volver()">⬅ Volver al menú</button>
-</section>
-
-
-<section id="contactos" class="modulo oculto">
-
-  <h2>Directorio Operativo STU</h2>
-  <p class="nota-interna">Uso interno – Contactos de jefaturas e inspección</p>
-
-  <!-- TURNO AM -->
-  <h3 class="categoria">Turno AM</h3>
-
-  <div class="contacto">
-    <strong>Jefes de Operaciones</strong>
-    <p>José Bustamante – <a href="tel:+56968341709">968341709</a></p>
-    <p>Gabriel Cornejo – <a href="tel:+56977964669">977964669</a></p>
-  </div>
-
-  <div class="contacto">
-    <strong>Jefes de Servicio</strong>
-    <p>Luis Molina – <a href="tel:+56952089381">952089381</a></p>
-    <p>Rodrigo Serrano – <a href="tel:+56946140880">946140880</a></p>
-    <p>Claudio Paz – <a href="tel:+56964332813">964332813</a></p>
-  </div>
-
-  <div class="contacto">
-    <strong>Inspectores</strong>
-    <p>Jackson Arias – <a href="tel:+56941900512">941900512</a></p>
-    <p>Néstor Espinoza – <a href="tel:+56933449509">933449509</a></p>
-    <p>Jeanette Rebolledo – <a href="tel:+56986254528">986254528</a></p>
-    <p>Kathia Pacheco – <a href="tel:+56954399799">954399799</a></p>
-    <p>Ángeles Azócar – <a href="tel:+56999391910">999391910</a></p>
-  </div>
-
-  <!-- TURNO PM -->
-  <h3 class="categoria">Turno PM</h3>
-
-  <div class="contacto">
-    <strong>Jefes de Operaciones</strong>
-    <p>Cristopher Alvear – <a href="tel:+56962809771">962809771</a></p>
-  </div>
-
-  <div class="contacto">
-    <strong>Jefes de Servicio</strong>
-    <p>Matías Bustamante – <a href="tel:+56966866758">966866758</a></p>
-    <p>David Ramírez – <a href="tel:+56921948354">921948354</a></p>
-  </div>
-
-  <div class="contacto">
-    <strong>Inspectores</strong>
-    <p>Carlos Sáez – <a href="tel:+56962296645">962296645</a></p>
-    <p>Rodolfo Cornejo – <a href="tel:+56985057590">985057590</a></p>
-    <p>Isabel Sánchez – <a href="tel:+56985450748">985450748</a></p>
-  </div>
-
-  <!-- TURNO NOCTURNO -->
-  <h3 class="categoria">Turno Nocturno</h3>
-
-  <div class="contacto">
-    <strong>Jefatura e Inspección</strong>
-    <p>Paola Arredondo – <a href="tel:+56926843321">926843321</a></p>
-    <p>Jorge Monsalve – <a href="tel:+56949317666">949317666</a></p>
-    <p>Lissete Alarcón – <a href="tel:+56937022016">937022016</a></p>
-  </div>
-
-  <br>
-  <button onclick="volver()">Volver al menú</button>
-
-</section>
-
-<section id="recorridos" class="modulo oculto">
-  <h2>Recorridos Operativos</h2>
-
-  <h3>Zona D</h3>
-  <div class="grid-recorridos">
-    <button onclick="abrirRecorrido('D01')">D01</button>
-    <button onclick="abrirRecorrido('D02')">D02</button>
-    <button onclick="abrirRecorrido('D03')">D03</button>
-    <button onclick="abrirRecorrido('D03c')">D03c</button>
-    <button onclick="abrirRecorrido('D07')">D07</button>
-    <button onclick="abrirRecorrido('D07c')">D07c</button>
-    <button onclick="abrirRecorrido('D09')">D09</button>
-    <button onclick="abrirRecorrido('D10')">D10</button>
-    <button onclick="abrirRecorrido('D11')">D11</button>
-    <button onclick="abrirRecorrido('D15')">D15</button>
-    <button onclick="abrirRecorrido('D18')">D18</button>
-    <button onclick="abrirRecorrido('D20')">D20</button>
-  </div>
-
-  <h3>Servicio Especial</h3>
-  <div class="grid-recorridos">
-    <button onclick="abrirRecorrido('420')">420</button>
-  </div>
-</section>
-
-  </main>
-
-  <!-- SERVICE WORKER -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("./service-worker.js");
-    }
-  </script>
-
-  <script src="app.js"></script>
 </body>
 </html>
-
-
-
 
 
 
