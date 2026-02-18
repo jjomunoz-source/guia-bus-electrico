@@ -166,3 +166,15 @@ footer {
   text-align: center;
   font-size: 12px;
 }
+.grid-recorridos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.grid-recorridos button {
+  text-align: center;
+  font-weight: bold;
+}
+
