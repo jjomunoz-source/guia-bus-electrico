@@ -32,6 +32,25 @@ self.addEventListener("fetch", event => {
   );
 });
 
+function abrirRecorrido(nombre) {
+  ocultarModulos();
+
+  const seccion = document.createElement("section");
+  seccion.className = "modulo";
+  seccion.innerHTML = `
+    <h2>Recorrido ${nombre}</h2>
+    <button onclick="mostrarCalle('${nombre}')">📍 Calle a Calle</button>
+    <button onclick="mostrarMapa('${nombre}')">🗺 Mapas y Desvíos</button>
+    <button onclick="volverRecorridos()">⬅ Volver</button>
+  `;
+
+  document.querySelector("main").appendChild(seccion);
+}
+
+function volverRecorridos() {
+  location.reload();
+}
+
 
 
 
