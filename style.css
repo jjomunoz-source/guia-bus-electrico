@@ -178,3 +178,6 @@ footer {
   font-weight: bold;
 }
 
+.modulo {
+  min-height: 60vh;
+}
