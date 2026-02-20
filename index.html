@@ -151,16 +151,28 @@
 
 <script>
 function mostrarModulo(id) {
+
+  // Oculta todos los módulos
   document.querySelectorAll(".modulo").forEach(m => {
     m.classList.add("oculto");
   });
+
+  // Oculta el menú principal
+  document.querySelector(".menu").style.display = "none";
+
+  // Muestra el módulo seleccionado
   document.getElementById(id).classList.remove("oculto");
 }
 
 function volver() {
+
+  // Oculta todos los módulos
   document.querySelectorAll(".modulo").forEach(m => {
     m.classList.add("oculto");
   });
+
+  // Muestra nuevamente el menú
+  document.querySelector(".menu").style.display = "flex";
 }
 </script>
 
@@ -172,6 +184,7 @@ function volver() {
 
 </body>
 </html>
+
 
 
 
