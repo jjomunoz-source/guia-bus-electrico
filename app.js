@@ -9,3 +9,5 @@ function volver() {
     modulo.classList.add("oculto");
   });
 }
+function abrirRecorrido(nombre) { ... }
+function volverRecorridos() { ... }
