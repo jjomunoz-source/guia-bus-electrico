@@ -1,5 +1,5 @@
 /* ============================= */
-/* BASE */
+/* RESET BASE */
 /* ============================= */
 
 * {
@@ -7,10 +7,15 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  background: #eef1f4; /* gris más corporativo */
+  background: #eef1f4;
   color: #222;
+  overflow-y: auto;
 }
 
 /* ============================= */
@@ -19,7 +24,7 @@ body {
 
 .header-corporativo {
   background: #5AA72F;
-  padding: 12px 20px;
+  padding: 14px 20px;
 }
 
 .header-contenido {
@@ -38,6 +43,7 @@ body {
   margin: 0;
   font-size: 20px;
   color: white;
+  font-weight: 600;
 }
 
 .titulo-header p {
@@ -53,27 +59,34 @@ body {
 
 .intro {
   background: white;
-  padding: 18px;
-  margin: 20px auto;
+  padding: 20px;
+  margin: 25px auto;
   max-width: 900px;
   border-left: 4px solid #5AA72F;
   font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 /* ============================= */
-/* CONTENIDO */
+/* CONTENIDO PRINCIPAL */
 /* ============================= */
 
 main {
   padding: 20px;
   max-width: 900px;
   margin: auto;
+  min-height: auto;
 }
+
+/* ============================= */
+/* MENÚ PRINCIPAL */
+/* ============================= */
 
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  margin-top: 20px;
 }
 
 /* ============================= */
@@ -81,18 +94,20 @@ main {
 /* ============================= */
 
 button {
-  padding: 12px;
+  padding: 14px;
   font-size: 15px;
   border: 1px solid #dcdcdc;
-  border-radius: 4px; /* menos redondeado */
+  border-radius: 4px;
   background: white;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: all 0.2s ease;
   text-align: left;
+  font-weight: 500;
 }
 
 button:hover {
   background: #f2f2f2;
+  border-color: #c8c8c8;
 }
 
 button:disabled {
@@ -106,10 +121,17 @@ button:disabled {
 
 .modulo {
   background: white;
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  margin-top: 20px;
+  padding: 25px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin: 30px auto;
+  border-top: 4px solid #5AA72F;
+
+  height: auto;
+  max-height: none;
+  overflow: visible;
+
+  animation: fadeIn 0.25s ease;
 }
 
 .modulo h2 {
@@ -123,8 +145,30 @@ button:disabled {
   display: none;
 }
 
+/* Animación suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ============================= */
-/* DIRECTORIO */
+/* GRID RECORRIDOS */
+/* ============================= */
+
+.grid-recorridos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.grid-recorridos button {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ============================= */
+/* DIRECTORIO TELEFÓNICO */
 /* ============================= */
 
 .nota-interna {
@@ -136,6 +180,8 @@ button:disabled {
   margin-top: 25px;
   color: #444;
   font-weight: bold;
+  border-left: 4px solid #5AA72F;
+  padding-left: 8px;
 }
 
 .contacto {
@@ -154,30 +200,19 @@ button:disabled {
   font-weight: 600;
 }
 
+.contacto a:hover {
+  text-decoration: underline;
+}
+
 /* ============================= */
 /* FOOTER */
 /* ============================= */
 
 footer {
   margin-top: 40px;
-  padding: 15px;
+  padding: 18px;
   background: #2c2c2c;
   color: white;
   text-align: center;
   font-size: 12px;
-}
-.grid-recorridos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.grid-recorridos button {
-  text-align: center;
-  font-weight: bold;
-}
-
-.modulo {
-  min-height: 60vh;
 }
