@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STU – Plataforma Operativa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Operativa – STU</title>
 
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- HEADER CORPORATIVO -->
 <header class="header-corporativo">
   <div class="header-contenido">
     <img src="logo-stu.png" alt="STU" class="logo">
     <div class="titulo-header">
-      <h1>Plataforma Operativa</h1>
+      <h1>Guía Operativa – Buses Eléctricos</h1>
       <p>STU | Uso Interno Área de Operaciones</p>
     </div>
   </div>
@@ -23,175 +23,204 @@
 
 <main>
 
-  <!-- MENÚ PRINCIPAL -->
-  <div class="menu">
-    <button onclick="mostrarModulo('protocolo')">
-      🔋 Protocolo Buses Eléctricos
-    </button>
+<!-- ================= MENÚ PRINCIPAL ================= -->
+<section id="menu" class="menu">
+  <button onclick="mostrarModulo('protocolo')">📘 Protocolo Buses Eléctricos</button>
+  <button onclick="mostrarModulo('directorio')">📞 Directorio Telefónico</button>
+  <button onclick="mostrarModulo('incidencias')">📝 Reporte de Incidencias</button>
+  <button onclick="mostrarModulo('recorridos')">🗺️ Recorridos Operativos</button>
+</section>
 
-    <button onclick="mostrarModulo('directorio')">
-      📞 Directorio Jefaturas
-    </button>
 
-    <button onclick="mostrarModulo('incidencias')">
-      ⚠ Reporte de Incidencias
-    </button>
+<!-- ================= PROTOCOLO ================= -->
+<section id="protocolo" class="modulo oculto">
 
-    <button onclick="mostrarModulo('recorridos')">
-      🗺 Recorridos Operativos
-    </button>
+  <h2>📘 Protocolo Buses Eléctricos</h2>
+
+  <div class="submenu">
+    <button onclick="mostrarSub('regen')">🔋 Frenado Regenerativo</button>
+    <button onclick="mostrarSub('conduccion')">🚍 Conducción Eficiente</button>
+    <button onclick="mostrarSub('cabina')">💡 Cabina y Sistemas</button>
   </div>
 
-  <!-- ================= PROTOCOLO ================= -->
+  <!-- Frenado -->
+  <div id="regen" class="submodulo oculto">
+    <h3>Frenado Regenerativo</h3>
+    <p>La regeneración se activa al presionar suavemente el freno, permitiendo recuperar energía hacia la batería.</p>
+    <ul>
+      <li>Anticipar detenciones</li>
+      <li>Frenar progresivamente</li>
+      <li>Evitar frenadas bruscas</li>
+    </ul>
+  </div>
 
-  <section id="protocolo" class="modulo oculto">
-    <h2>Protocolo Buses Eléctricos</h2>
+  <!-- Conducción -->
+  <div id="conduccion" class="submodulo oculto">
+    <h3>Conducción Eficiente</h3>
+    <ul>
+      <li>Aceleraciones suaves</li>
+      <li>Mantener velocidad constante</li>
+      <li>Anticipar tránsito</li>
+      <li>Evitar cambios bruscos</li>
+    </ul>
+  </div>
 
-    <button onclick="mostrarModulo('regen')">🔋 Frenado regenerativo</button>
-    <button onclick="mostrarModulo('conduccion')">🚍 Conducción eficiente</button>
-    <button onclick="mostrarModulo('ac')">❄ Uso del A/C</button>
-    <button onclick="mostrarModulo('cabina')">💡 Cabina y sistemas</button>
+  <!-- Cabina -->
+  <div id="cabina" class="submodulo oculto">
+    <h3>Cabina y Sistemas</h3>
+    <ul>
+      <li>Revisar nivel de batería</li>
+      <li>Verificar ausencia de alertas</li>
+      <li>Comprobar funcionamiento de puertas</li>
+      <li>No ignorar testigos luminosos</li>
+    </ul>
+  </div>
 
-    <br><br>
-    <button onclick="volver()">⬅ Volver</button>
-  </section>
+  <br>
+  <button onclick="volver()">⬅ Volver al menú</button>
 
-  <section id="regen" class="modulo oculto">
-    <h2>Frenado regenerativo</h2>
-    <p>Aplicar frenado progresivo para maximizar recuperación de energía.</p>
-    <button onclick="volver()">⬅ Volver</button>
-  </section>
+</section>
 
-  <section id="conduccion" class="modulo oculto">
-    <h2>Conducción eficiente</h2>
-    <p>Aceleraciones suaves y anticipación del tránsito.</p>
-    <button onclick="volver()">⬅ Volver</button>
-  </section>
 
-  <section id="ac" class="modulo oculto">
-    <h2>Uso eficiente del Aire Acondicionado</h2>
-    <p>Evitar uso innecesario y temperaturas extremas.</p>
-    <button onclick="volver()">⬅ Volver</button>
-  </section>
+<!-- ================= DIRECTORIO ================= -->
+<section id="directorio" class="modulo oculto">
 
-  <section id="cabina" class="modulo oculto">
-    <h2>Cabina y sistemas</h2>
-    <p>Revisión de indicadores y testigos antes de iniciar servicio.</p>
-    <button onclick="volver()">⬅ Volver</button>
-  </section>
+  <h2>📞 Directorio Telefónico</h2>
+  <p class="nota-interna">Uso interno – Área de Operaciones STU</p>
 
-  <!-- ================= DIRECTORIO ================= -->
+  <!-- ================= TURNO AM ================= -->
+  <h3 class="categoria">Turno AM</h3>
 
-  <section id="directorio" class="modulo oculto">
-    <h2>Directorio Operativo STU</h2>
-    <p class="nota-interna">Uso interno – Contactos de jefaturas e inspección</p>
+  <div class="contacto">
+    <strong>Jefes de Operaciones</strong>
+    <p>José Bustamante – <a href="tel:+56968341709">968341709</a></p>
+    <p>Gabriel Cornejo – <a href="tel:+56977964669">977964669</a></p>
+  </div>
 
-    <h3 class="categoria">Turno AM</h3>
-    <div class="contacto">
-      <strong>Jefes de Operaciones</strong>
-      <p>José Bustamante – <a href="tel:+56968341709">968341709</a></p>
-      <p>Gabriel Cornejo – <a href="tel:+56977964669">977964669</a></p>
-    </div>
+  <div class="contacto">
+    <strong>Jefes de Servicio</strong>
+    <p>Luis Molina – <a href="tel:+56952089381">952089381</a></p>
+    <p>Rodrigo Serrano – <a href="tel:+56946140880">946140880</a></p>
+    <p>Claudio Paz – <a href="tel:+56964332813">964332813</a></p>
+  </div>
 
-    <br>
-    <button onclick="volver()">⬅ Volver</button>
-  </section>
+  <div class="contacto">
+    <strong>Inspectores</strong>
+    <p>Jackson Arias – <a href="tel:+56941900512">941900512</a></p>
+    <p>Néstor Espinoza – <a href="tel:+56933449509">933449509</a></p>
+    <p>Jeanette Rebolledo – <a href="tel:+56986254528">986254528</a></p>
+    <p>Kathia Pacheco – <a href="tel:+56954399799">954399799</a></p>
+    <p>Ángeles Azócar – <a href="tel:+56999391910">999391910</a></p>
+  </div>
 
-  <!-- ================= INCIDENCIAS ================= -->
 
-  <section id="incidencias" class="modulo oculto">
-    <h2>Reporte de Incidencias</h2>
-    <p>Para reportar incidencias operativas utilice el formulario oficial:</p>
+  <!-- ================= TURNO PM ================= -->
+  <h3 class="categoria">Turno PM</h3>
 
-    <a href="https://forms.office.com/" target="_blank" class="btn-manual">
-      ⚠ Abrir Formulario de Incidencias
-    </a>
+  <div class="contacto">
+    <strong>Jefes de Operaciones</strong>
+    <p>Cristopher Alvear – <a href="tel:+56962809771">962809771</a></p>
+  </div>
 
-    <br><br>
-    <button onclick="volver()">⬅ Volver</button>
-  </section>
+  <div class="contacto">
+    <strong>Jefes de Servicio</strong>
+    <p>Matías Bustamante – <a href="tel:+56966866758">966866758</a></p>
+    <p>David Ramírez – <a href="tel:+56921948354">921948354</a></p>
+  </div>
 
-  <!-- ================= RECORRIDOS ================= -->
+  <div class="contacto">
+    <strong>Inspectores</strong>
+    <p>Carlos Sáez – <a href="tel:+56962296645">962296645</a></p>
+    <p>Rodolfo Cornejo – <a href="tel:+56985057590">985057590</a></p>
+    <p>Isabel Sánchez – <a href="tel:+56985450748">985450748</a></p>
+  </div>
 
-  <section id="recorridos" class="modulo oculto">
-    <h2>Recorridos Operativos</h2>
 
-    <h3>Zona D</h3>
-    <div class="grid-recorridos">
-      <button>D01</button>
-      <button>D02</button>
-      <button>D03</button>
-      <button>D03c</button>
-      <button>D07</button>
-      <button>D07c</button>
-      <button>D09</button>
-      <button>D10</button>
-      <button>D11</button>
-      <button>D15</button>
-      <button>D18</button>
-      <button>D20</button>
-    </div>
+  <!-- ================= TURNO NOCTURNO ================= -->
+  <h3 class="categoria">Turno Nocturno</h3>
 
-    <h3>Servicio Especial</h3>
-    <div class="grid-recorridos">
-      <button>420</button>
-    </div>
+  <div class="contacto">
+    <strong>Jefatura e Inspección</strong>
+    <p>Paola Arredondo – <a href="tel:+56926843321">926843321</a></p>
+    <p>Jorge Monsalve – <a href="tel:+56949317666">949317666</a></p>
+    <p>Lissete Alarcón – <a href="tel:+56937022016">937022016</a></p>
+  </div>
 
-    <br>
-    <button onclick="volver()">⬅ Volver</button>
-  </section>
+
+  <br>
+  <button onclick="volver()">⬅ Volver al menú</button>
+</section>
+
+
+<!-- ================= INCIDENCIAS ================= -->
+<section id="incidencias" class="modulo oculto">
+  <h2>📝 Reporte de Incidencias</h2>
+
+  <p>Ante cualquier anomalía operativa:</p>
+
+  <ul>
+    <li>Informar inmediatamente a despacho</li>
+    <li>Registrar hora y ubicación</li>
+    <li>Detallar descripción clara del evento</li>
+    <li>No reiniciar sistemas sin autorización</li>
+  </ul>
+
+  <br>
+  <button onclick="volver()">⬅ Volver al menú</button>
+</section>
+
+
+<!-- ================= RECORRIDOS ================= -->
+<section id="recorridos" class="modulo oculto">
+  <h2>🗺️ Recorridos Operativos</h2>
+
+  <div class="grid-recorridos">
+    <button>D01</button>
+    <button>D02</button>
+    <button>D03</button>
+    <button>D03c</button>
+    <button>D07</button>
+    <button>D07c</button>
+    <button>D09</button>
+    <button>D10</button>
+    <button>D11</button>
+    <button>D15</button>
+    <button>D18</button>
+    <button>D20</button>
+    <button>420 (Especial)</button>
+  </div>
+
+  <p><strong>Nota:</strong> Próximamente se incorporará trazado calle a calle y desvíos operativos.</p>
+
+  <br>
+  <button onclick="volver()">⬅ Volver al menú</button>
+</section>
+
 
 </main>
 
-<footer>
-  STU – Santiago Transporte Urbano |
-  Plataforma Operativa |
-  Versión 1.0 – Uso Interno
-</footer>
-
 <script>
+
 function mostrarModulo(id) {
+  document.querySelectorAll('.modulo').forEach(m => m.classList.add('oculto'));
+  document.getElementById(id).classList.remove('oculto');
+  window.scrollTo(0,0);
+}
 
-  // Oculta todos los módulos
-  document.querySelectorAll(".modulo").forEach(m => {
-    m.classList.add("oculto");
-  });
-
-  // Oculta menú con clase
-  document.querySelector(".menu").classList.add("oculto");
-
-  // Muestra módulo
-  document.getElementById(id).classList.remove("oculto");
+function mostrarSub(id) {
+  document.querySelectorAll('.submodulo').forEach(s => s.classList.add('oculto'));
+  document.getElementById(id).classList.remove('oculto');
 }
 
 function volver() {
-
-  // Oculta todos los módulos
-  document.querySelectorAll(".modulo").forEach(m => {
-    m.classList.add("oculto");
-  });
-
-  // Muestra menú quitando clase
-  document.querySelector(".menu").classList.remove("oculto");
+  document.querySelectorAll('.modulo').forEach(m => m.classList.add('oculto'));
 }
-</script>
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./service-worker.js");
-  }
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./service-worker.js");
+}
+
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
