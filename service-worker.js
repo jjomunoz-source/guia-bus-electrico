@@ -1,11 +1,11 @@
-const CACHE_NAME = "bus-electrico-v15";
+const CACHE_NAME = "bus-electrico-v16";
 
 const FILES_TO_CACHE = [
   "./",
-  "./index.html",
   "./style.css",
-  "./app.js",
-  "./manifest.json"
+  "./manifest.json",
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
 self.addEventListener("install", event => {
@@ -32,18 +32,10 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
+    fetch(event.request)
+      .then(response => {
+        return response;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
-
-
-
-
-
-
-
-
-
-
