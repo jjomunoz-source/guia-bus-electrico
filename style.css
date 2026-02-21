@@ -140,3 +140,7 @@ footer {
 .menu.oculto {
   display: none;
 }
+
+.oculto {
+  display: none;
+}
