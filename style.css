@@ -15,11 +15,14 @@ body {
   margin: 0;
   background: #eef1f4;
   color: #222;
-  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ============================= */
-/* HEADER CORPORATIVO */
+/* HEADER */
 /* ============================= */
 
 .header-corporativo {
@@ -54,32 +57,19 @@ body {
 }
 
 /* ============================= */
-/* INTRO */
-/* ============================= */
-
-.intro {
-  background: white;
-  padding: 20px;
-  margin: 25px auto;
-  max-width: 900px;
-  border-left: 4px solid #5AA72F;
-  font-size: 14px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-/* ============================= */
-/* CONTENIDO PRINCIPAL */
+/* MAIN FLEXIBLE */
 /* ============================= */
 
 main {
+  flex: 1;              /* 👈 Esto es la clave */
   padding: 20px;
   max-width: 900px;
+  width: 100%;
   margin: auto;
-  min-height: auto;
 }
 
 /* ============================= */
-/* MENÚ PRINCIPAL */
+/* MENÚ */
 /* ============================= */
 
 .menu {
@@ -90,7 +80,7 @@ main {
 }
 
 /* ============================= */
-/* BOTONES INSTITUCIONALES */
+/* BOTONES */
 /* ============================= */
 
 button {
@@ -110,13 +100,8 @@ button:hover {
   border-color: #c8c8c8;
 }
 
-button:disabled {
-  background: #e0e0e0;
-  cursor: not-allowed;
-}
-
 /* ============================= */
-/* MÓDULOS */
+/* MODULOS */
 /* ============================= */
 
 .modulo {
@@ -124,31 +109,10 @@ button:disabled {
   padding: 25px;
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  margin: 30px auto;
+  margin-top: 20px;
   border-top: 4px solid #5AA72F;
 
-  height: auto;
-  max-height: none;
-  overflow: visible;
-
-  animation: fadeIn 0.25s ease;
-}
-
-.modulo h2 {
-  margin-top: 0;
-  border-bottom: 2px solid #5AA72F;
-  padding-bottom: 6px;
-  font-size: 18px;
-}
-
-.oculto {
-  display: none;
-}
-
-/* Animación suave */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  width: 100%;
 }
 
 /* ============================= */
@@ -162,54 +126,11 @@ button:disabled {
   margin-top: 15px;
 }
 
-.grid-recorridos button {
-  text-align: center;
-  font-weight: bold;
-}
-
 /* ============================= */
-/* DIRECTORIO TELEFÓNICO */
-/* ============================= */
-
-.nota-interna {
-  font-size: 12px;
-  color: #666;
-}
-
-.categoria {
-  margin-top: 25px;
-  color: #444;
-  font-weight: bold;
-  border-left: 4px solid #5AA72F;
-  padding-left: 8px;
-}
-
-.contacto {
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.contacto strong {
-  display: block;
-  font-size: 14px;
-}
-
-.contacto a {
-  color: #5AA72F;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.contacto a:hover {
-  text-decoration: underline;
-}
-
-/* ============================= */
-/* FOOTER */
+/* FOOTER PEGADO ABAJO */
 /* ============================= */
 
 footer {
-  margin-top: 40px;
   padding: 18px;
   background: #2c2c2c;
   color: white;
