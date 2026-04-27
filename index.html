@@ -13,7 +13,7 @@
 
 <header class="header-corporativo">
   <div class="header-contenido">
-    <img src="logo-stu.png" alt="STU" class="logo">
+    <img src="logo-stu.png" class="logo">
     <div class="titulo-header">
       <h1>Guía Operativa – Buses Eléctricos</h1>
       <p>STU | Uso Interno Área de Operaciones</p>
@@ -23,14 +23,13 @@
 
 <main>
 
-<!-- ================= MENÚ PRINCIPAL ================= -->
-<section id="menu" class="menu">
-  <button onclick="mostrarModulo('protocolo')">📘 Protocolo Buses Eléctricos</button>
-  <button onclick="mostrarModulo('directorio')">📞 Directorio Telefónico</button>
-  <button onclick="mostrarModulo('incidencias')">📝 Reporte de Incidencias</button>
-  <button onclick="mostrarModulo('recorridos')">🗺️ Recorridos Operativos</button>
-</section>
-
+<!-- ================= MENÚ ================= -->
+<div id="menu" class="menu">
+  <button onclick="mostrarModulo('protocolo')">📘 Protocolo</button>
+  <button onclick="mostrarModulo('directorio')">📞 Directorio</button>
+  <button onclick="mostrarModulo('incidencias')">📝 Incidencias</button>
+  <button onclick="mostrarModulo('recorridos')">🗺️ Recorridos</button>
+</div>
 
 <!-- ================= PROTOCOLO ================= -->
 <section id="protocolo" class="modulo oculto">
@@ -38,123 +37,47 @@
   <h2>📘 Protocolo Buses Eléctricos</h2>
 
   <div class="submenu">
-    <button onclick="mostrarSub('regen')">🔋 Frenado Regenerativo</button>
-    <button onclick="mostrarSub('conduccion')">🚍 Conducción Eficiente</button>
-    <button onclick="mostrarSub('cabina')">💡 Cabina y Sistemas</button>
+    <button onclick="mostrarSub('regen')">🔋 Regeneración</button>
+    <button onclick="mostrarSub('conduccion')">🚍 Conducción</button>
+    <button onclick="mostrarSub('cabina')">💡 Cabina</button>
   </div>
 
-  <!-- Frenado -->
   <div id="regen" class="submodulo oculto">
-
-  <h3>🔋 Conducción Eficiente y Regeneración</h3>
-
-  <p class="impacto">
-    La regeneración permite recuperar energía en cada desaceleración.
-    Una conducción eficiente puede aumentar la autonomía y reducir el desgaste del bus.
-  </p>
-
-  <hr>
-
-  <h4>⚙️ ¿Qué es la regeneración?</h4>
-  <p>
-    Es un sistema inteligente del bus eléctrico Foton U12 que recupera energía al frenar o desacelerar.
-    El motor se convierte en generador, enviando energía de vuelta a la batería.
-  </p>
-
-  <hr>
-
-  <h4>🔄 Cómo funciona el frenado</h4>
-
-  <div class="pasos">
-
-    <p><strong>1. Suelta el acelerador</strong><br>
-    El bus rueda por inercia y comienza a regenerar energía.<br>
-    <span class="ok">✔ Es la forma más eficiente</span>
-    </p>
-
-    <p><strong>2. Frena suave</strong><br>
-    Se activa principalmente el frenado regenerativo.<br>
-    Recuperas energía y reduces desgaste de frenos.
-    </p>
-
-    <p><strong>3. Frena fuerte (si es necesario)</strong><br>
-    El sistema combina regeneración + frenos tradicionales automáticamente.
-    </p>
-
-  </div>
-
-  <hr>
-
-  <h4>✅ Consejos clave</h4>
-  <ul>
-    <li>Anticipa paradas y semáforos</li>
-    <li>Suelta el acelerador con tiempo</li>
-    <li>Acelera de forma suave y progresiva</li>
-    <li>Prefiere frenadas suaves</li>
-    <li>Deja que el bus ruede en bajadas o aproximaciones</li>
-    <li>Mantén velocidad constante</li>
-  </ul>
-
-  <hr>
-
-  <h4>❌ Errores comunes</h4>
-  <ul>
-    <li>Frenar a último momento</li>
-    <li>Acelerar y frenar constantemente</li>
-    <li>No anticipar el tránsito</li>
-    <li>Conducción agresiva</li>
-  </ul>
-
-  <hr>
-
-  <div class="regla-oro">
-    <h4>⭐ Regla de Oro</h4>
-    <p>
-      Suelta primero → Frena suave → Anticípate siempre
-    </p>
-  </div>
-
-  <div class="beneficio-final">
-    🚍 Más kilómetros + 🔋 más batería + 🛠️ menos desgaste
-  </div>
-
-</div>
-
-  <!-- Conducción -->
-  <div id="conduccion" class="submodulo oculto">
-    <h3>Conducción Eficiente</h3>
+    <h3>🔋 Regeneración</h3>
+    <p><strong>Regla de oro:</strong> Suelta → Frena suave → Anticípate</p>
     <ul>
-      <li>Aceleraciones suaves</li>
-      <li>Mantener velocidad constante</li>
-      <li>Anticipar tránsito</li>
+      <li>Anticipa paradas</li>
+      <li>Evita frenazos</li>
+      <li>Deja rodar el bus</li>
+    </ul>
+  </div>
+
+  <div id="conduccion" class="submodulo oculto">
+    <h3>🚍 Conducción eficiente</h3>
+    <ul>
+      <li>Aceleración progresiva</li>
+      <li>Velocidad constante</li>
       <li>Evitar cambios bruscos</li>
     </ul>
   </div>
 
-  <!-- Cabina -->
   <div id="cabina" class="submodulo oculto">
-    <h3>Cabina y Sistemas</h3>
+    <h3>💡 Cabina</h3>
     <ul>
-      <li>Revisar nivel de batería</li>
-      <li>Verificar ausencia de alertas</li>
-      <li>Comprobar funcionamiento de puertas</li>
-      <li>No ignorar testigos luminosos</li>
+      <li>Revisar batería</li>
+      <li>Sin alertas activas</li>
+      <li>Chequeo de puertas</li>
     </ul>
   </div>
 
-  <br>
-  <button onclick="volver()">⬅ Volver al menú</button>
-
+  <button onclick="volver()">⬅ Volver</button>
 </section>
-
 
 <!-- ================= DIRECTORIO ================= -->
 <section id="directorio" class="modulo oculto">
 
-  <h2>📞 Directorio Telefónico</h2>
-  <p class="nota-interna">Uso interno – Área de Operaciones STU</p>
+  <h2>📞 Directorio</h2>
 
-  <!-- ================= TURNO AM ================= -->
   <h3 class="categoria">Turno AM</h3>
 
   <div class="contacto">
@@ -170,75 +93,24 @@
     <p>Claudio Paz – <a href="tel:+56964332813">964332813</a></p>
   </div>
 
-  <div class="contacto">
-    <strong>Inspectores</strong>
-    <p>Jackson Arias – <a href="tel:+56941900512">941900512</a></p>
-    <p>Néstor Espinoza – <a href="tel:+56933449509">933449509</a></p>
-    <p>Jeanette Rebolledo – <a href="tel:+56986254528">986254528</a></p>
-    <p>Kathia Pacheco – <a href="tel:+56954399799">954399799</a></p>
-    <p>Ángeles Azócar – <a href="tel:+56999391910">999391910</a></p>
-  </div>
-
-
-  <!-- ================= TURNO PM ================= -->
-  <h3 class="categoria">Turno PM</h3>
-
-  <div class="contacto">
-    <strong>Jefes de Operaciones</strong>
-    <p>Cristopher Alvear – <a href="tel:+56962809771">962809771</a></p>
-  </div>
-
-  <div class="contacto">
-    <strong>Jefes de Servicio</strong>
-    <p>Matías Bustamante – <a href="tel:+56966866758">966866758</a></p>
-    <p>David Ramírez – <a href="tel:+56921948354">921948354</a></p>
-  </div>
-
-  <div class="contacto">
-    <strong>Inspectores</strong>
-    <p>Carlos Sáez – <a href="tel:+56962296645">962296645</a></p>
-    <p>Rodolfo Cornejo – <a href="tel:+56985057590">985057590</a></p>
-    <p>Isabel Sánchez – <a href="tel:+56985450748">985450748</a></p>
-  </div>
-
-
-  <!-- ================= TURNO NOCTURNO ================= -->
-  <h3 class="categoria">Turno Nocturno</h3>
-
-  <div class="contacto">
-    <strong>Jefatura e Inspección</strong>
-    <p>Paola Arredondo – <a href="tel:+56926843321">926843321</a></p>
-    <p>Jorge Monsalve – <a href="tel:+56949317666">949317666</a></p>
-    <p>Lissete Alarcón – <a href="tel:+56937022016">937022016</a></p>
-  </div>
-
-
-  <br>
-  <button onclick="volver()">⬅ Volver al menú</button>
+  <button onclick="volver()">⬅ Volver</button>
 </section>
-
 
 <!-- ================= INCIDENCIAS ================= -->
 <section id="incidencias" class="modulo oculto">
-  <h2>📝 Reporte de Incidencias</h2>
-
-  <p>Ante cualquier anomalía operativa:</p>
-
+  <h2>📝 Incidencias</h2>
   <ul>
-    <li>Informar inmediatamente a despacho</li>
-    <li>Registrar hora y ubicación</li>
-    <li>Detallar descripción clara del evento</li>
-    <li>No reiniciar sistemas sin autorización</li>
+    <li>Informar a despacho</li>
+    <li>Registrar hora y lugar</li>
+    <li>No reiniciar sistemas</li>
   </ul>
-
-  <br>
-  <button onclick="volver()">⬅ Volver al menú</button>
+  <button onclick="volver()">⬅ Volver</button>
 </section>
-
 
 <!-- ================= RECORRIDOS ================= -->
 <section id="recorridos" class="modulo oculto">
-  <h2>🗺️ Recorridos Operativos</h2>
+
+  <h2>🗺️ Recorridos</h2>
 
   <div class="grid-recorridos">
     <button onclick="mostrarModulo('d01')">D01</button>
@@ -253,105 +125,34 @@
     <button>D15</button>
     <button>D18</button>
     <button>D20</button>
-    <button>420 (Especial)</button>
+    <button>420</button>
   </div>
 
-  <p><strong>Nota:</strong> Próximamente se incorporará trazado calle a calle y desvíos operativos.</p>
-
-  <br>
-  <button onclick="volver()">⬅ Volver al menú</button>
+  <button onclick="volver()">⬅ Volver</button>
 </section>
 
-  <!-- ================= D01 ================= -->
+<!-- ================= D01 ================= -->
 <section id="d01" class="modulo oculto">
 
-  <h2>🗺️ Recorrido D01</h2>
+  <h2>🗺️ D01</h2>
 
-  <!-- IDA -->
-  <h3>Sentido Ida</h3>
-  <div class="tabla-recorrido">
-    <p>Diagonal Las Torres (Peñalolén)</p>
-    <p>Álvaro Casanova</p>
-    <p>Antupirén</p>
-    <p>Consistorial</p>
-    <p>Av. José Arrieta</p>
-    <p>Diputada Laura Rodríguez (La Reina)</p>
-    <p>Talinay</p>
-    <p>Quillagua</p>
-    <p>Av. Alcalde Fernando Castillo Velasco</p>
-    <p>Av. Larraín</p>
-    <p>Av. Irarrázaval (Ñuñoa)</p>
-    <p>General Alejandro Bernales</p>
-    <p>Hamburgo</p>
-  </div>
+  <h3>Ida</h3>
+  <ul>
+    <li>Diagonal Las Torres</li>
+    <li>Álvaro Casanova</li>
+    <li>Antupirén</li>
+    <li>Consistorial</li>
+    <li>Av. Arrieta</li>
+  </ul>
 
-  <!-- VUELTA -->
-  <h3>Sentido Regreso</h3>
-  <div class="tabla-recorrido">
-    <p>Av. Irarrázaval</p>
-    <p>Av. Larraín</p>
-    <p>Av. Alcalde Fernando Castillo Velasco</p>
-    <p>Quillagua</p>
-    <p>Talinay</p>
-    <p>Diputada Laura Rodríguez</p>
-    <p>Av. José Arrieta</p>
-    <p>Consistorial</p>
-    <p>Antupirén</p>
-    <p>Álvaro Casanova</p>
-    <p>Diagonal Las Torres</p>
-  </div>
+  <h3>Desvíos</h3>
+  <ul>
+    <li>Reversibilidad Larraín</li>
+    <li>Reversibilidad Consistorial</li>
+    <li>Desvío Feria</li>
+  </ul>
 
-  <!-- DESVÍOS -->
-  <h3>⚠ Desvíos Operacionales</h3>
-
-  <div class="desvio">
-    <strong>Reversibilidad – Eje Larraín (07:30 - 10:00)</strong>
-    <ul>
-      <li>Av. Larraín</li>
-      <li>Av. Ossa</li>
-      <li>Retorno Mall Plaza Egaña</li>
-      <li>Av. Ossa (Ñuñoa)</li>
-      <li>Av. Américo Vespucio</li>
-      <li>Blest Gana</li>
-      <li>Av. Tobalaba</li>
-      <li>Av. Alcalde Fernando Castillo Velasco</li>
-    </ul>
-  </div>
-
-  <div class="desvio">
-    <strong>Reversibilidad – Eje Consistorial (07:00 - 10:00)</strong>
-    <ul>
-      <li>Av. José Arrieta</li>
-      <li>Quebrada de Suca</li>
-      <li>Av. Grecia</li>
-      <li>Consistorial</li>
-    </ul>
-  </div>
-
-  <div class="desvio">
-    <strong>Desvío Feria – Consistorial (Miércoles a Domingo 05:30 - 20:30)</strong>
-    <ul>
-      <li>Av. José Arrieta</li>
-      <li>Quebrada de Suca</li>
-      <li>Av. Grecia</li>
-      <li>Consistorial</li>
-      <li>Antupirén</li>
-    </ul>
-  </div>
-
-  <div class="desvio">
-    <strong>Alternativa Feria</strong>
-    <ul>
-      <li>Antupirén</li>
-      <li>Ricardo Grellet de los Reyes</li>
-      <li>Quebrada de Suca</li>
-      <li>Av. José Arrieta</li>
-    </ul>
-  </div>
-
-  <br>
   <button onclick="volver()">⬅ Volver</button>
-
 </section>
 
 </main>
@@ -359,18 +160,32 @@
 <script>
 
 function mostrarModulo(id) {
-  document.querySelectorAll('.modulo').forEach(m => m.classList.add('oculto'));
+
+  document.getElementById("menu").style.display = "none";
+
+  document.querySelectorAll('.modulo').forEach(m => {
+    m.classList.add('oculto');
+  });
+
   document.getElementById(id).classList.remove('oculto');
   window.scrollTo(0,0);
 }
 
 function mostrarSub(id) {
-  document.querySelectorAll('.submodulo').forEach(s => s.classList.add('oculto'));
+  document.querySelectorAll('.submodulo').forEach(s => {
+    s.classList.add('oculto');
+  });
+
   document.getElementById(id).classList.remove('oculto');
 }
 
 function volver() {
-  document.querySelectorAll('.modulo').forEach(m => m.classList.add('oculto'));
+
+  document.querySelectorAll('.modulo').forEach(m => {
+    m.classList.add('oculto');
+  });
+
+  document.getElementById("menu").style.display = "flex";
 }
 
 if ("serviceWorker" in navigator) {
