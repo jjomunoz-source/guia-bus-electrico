@@ -18,7 +18,10 @@ body {
 
   display: flex;
   flex-direction: column;
+
+  /* 🔥 CLAVE REAL */
   min-height: 100vh;
+  overflow-y: auto;
 }
 
 /* ============================= */
@@ -67,7 +70,9 @@ main {
   width: 100%;
   margin: auto;
 
-  overflow: visible; /* 🔥 CLAVE */
+  /* 🔥 CLAVES IMPORTANTES */
+  overflow: visible;
+  min-height: 0;
 }
 
 /* ============================= */
@@ -116,9 +121,9 @@ button:hover {
 
   width: 100%;
 
-  /* 🔥 CLAVES DEL FIX */
+  /* 🔥 FIX REAL */
   height: auto;
-  min-height: auto;
+  min-height: 100%;
   max-height: none;
   overflow: visible;
 }
@@ -152,7 +157,7 @@ button:hover {
 
 .tabla-recorrido p {
   margin: 6px 0;
-  padding: 8px;
+  padding: 10px;
   background: #f5f5f5;
   border-radius: 4px;
 }
