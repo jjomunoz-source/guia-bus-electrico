@@ -198,3 +198,15 @@ footer {
 .oculto {
   display: none;
 }
+
+body {
+  overflow-y: auto;
+}
+
+main {
+  min-height: 0;
+}
+
+.modulo {
+  min-height: 100%;
+}
