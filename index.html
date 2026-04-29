@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guía Operativa – STU</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Operativa – STU</title>
 
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="header-corporativo">
   <div class="header-contenido">
-    <img src="logo-stu.png" class="logo">
+    <img src="logo-stu.png" class="logo" alt="STU">
     <div class="titulo-header">
       <h1>Guía Operativa – Buses Eléctricos</h1>
       <p>STU | Uso Interno Área de Operaciones</p>
@@ -40,7 +40,7 @@
 <button onclick="mostrarSub('conduccion')">🚍 Conducción Eficiente</button>
 <button onclick="mostrarSub('cabina')">💡 Cabina y Sistemas</button>
 
-<!-- 🔋 REGENERACIÓN COMPLETA -->
+<!-- REGENERACIÓN -->
 <div id="regen" class="submodulo oculto">
 
 <h3>🔋 Conducción Eficiente y Regeneración</h3>
@@ -107,7 +107,7 @@ Combina regeneración + frenos tradicionales automáticamente.
 
 </section>
 
-<!-- ================= DIRECTORIO COMPLETO ================= -->
+<!-- ================= DIRECTORIO ================= -->
 <section id="directorio" class="modulo oculto">
 
 <h2>📞 Directorio Operativo STU</h2>
@@ -145,7 +145,6 @@ Combina regeneración + frenos tradicionales automáticamente.
 <p>Isabel Sánchez – 985450748</p>
 
 <h3>Turno Nocturno</h3>
-
 <p>Paola Arredondo – 926843321</p>
 <p>Jorge Monsalve – 949317666</p>
 <p>Lissete Alarcón – 937022016</p>
@@ -179,17 +178,17 @@ Combina regeneración + frenos tradicionales automáticamente.
 
 <div class="grid-recorridos">
 <button onclick="abrir('d01')">D01</button>
-<button>D02</button>
-<button>D03</button>
-<button>D03c</button>
-<button>D07</button>
-<button>D07c</button>
-<button>D09</button>
-<button>D10</button>
-<button>D11</button>
-<button>D15</button>
-<button>D18</button>
-<button>D20</button>
+<button onclick="abrir('d02')">D02</button>
+<button onclick="abrir('d03')">D03</button>
+<button onclick="abrir('d03c')">D03c</button>
+<button onclick="abrir('d07')">D07</button>
+<button onclick="abrir('d08')">D08</button>
+<button onclick="abrir('d09')">D09</button>
+<button onclick="abrir('d10')">D10</button>
+<button onclick="abrir('d11')">D11</button>
+<button onclick="abrir('d15')">D15</button>
+<button onclick="abrir('d18')">D18</button>
+<button onclick="abrir('d20')">D20</button>
 <button>420</button>
 </div>
 
@@ -198,117 +197,93 @@ Combina regeneración + frenos tradicionales automáticamente.
 
 </section>
 
-<!-- ================= D01 COMPLETO ================= -->
+<!-- ================= D01 ================= -->
 <section id="d01" class="modulo oculto">
+<h2>🗺️ Recorrido D01</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-  <h2>🗺️ Recorrido D01</h2>
+<!-- ================= D02 ================= -->
+<section id="d02" class="modulo oculto">
+<h2>🗺️ Recorrido D02</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-  <!-- IDA -->
-  <h3>🧭 Vista rápida del recorrido</h3>
+<!-- ================= D03 ================= -->
+<section id="d03" class="modulo oculto">
+<h2>🗺️ Recorrido D03</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-<div class="mapa-d01">
+<!-- ================= D03c ================= -->
+<section id="d03c" class="modulo oculto">
+<h2>🗺️ Recorrido D03c</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-  <div class="linea"></div>
+<!-- ================= D07 ================= -->
+<section id="d07" class="modulo oculto">
+<h2>🗺️ Recorrido D07</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-  <div class="punto">Diagonal Las Torres</div>
-  <div class="punto">Álvaro Casanova</div>
-  <div class="punto">Antupirén</div>
-  <div class="punto">Consistorial</div>
-  <div class="punto">Av. Arrieta</div>
-  <div class="punto">Larraín</div>
-  <div class="punto">Irarrázaval</div>
+<!-- ================= D08 ================= -->
+<section id="d08" class="modulo oculto">
+<h2>🗺️ Recorrido D08</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-</div>
-  <h3>Sentido Ida</h3>
-  <div class="tabla-recorrido">
-    <p>Diagonal Las Torres (Peñalolén)</p>
-    <p>Álvaro Casanova</p>
-    <p>Antupirén</p>
-    <p>Consistorial</p>
-    <p>Av. José Arrieta</p>
-    <p>Diputada Laura Rodríguez (La Reina)</p>
-    <p>Talinay</p>
-    <p>Quillagua</p>
-    <p>Av. Alcalde Fernando Castillo Velasco</p>
-    <p>Av. Larraín</p>
-    <p>Av. Irarrázaval (Ñuñoa)</p>
-    <p>General Alejandro Bernales</p>
-    <p>Hamburgo</p>
-  </div>
+<!-- ================= D09 ================= -->
+<section id="d09" class="modulo oculto">
+<h2>🗺️ Recorrido D09</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-  <!-- VUELTA -->
-  <h3>Sentido Regreso</h3>
-  <div class="tabla-recorrido">
-    <p>Av. Irarrázaval</p>
-    <p>Av. Larraín</p>
-    <p>Av. Alcalde Fernando Castillo Velasco</p>
-    <p>Quillagua</p>
-    <p>Talinay</p>
-    <p>Diputada Laura Rodríguez</p>
-    <p>Av. José Arrieta</p>
-    <p>Consistorial</p>
-    <p>Antupirén</p>
-    <p>Álvaro Casanova</p>
-    <p>Diagonal Las Torres</p>
-  </div>
+<!-- ================= D10 ================= -->
+<section id="d10" class="modulo oculto">
+<h2>🗺️ Recorrido D10</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-  <!-- DESVÍOS -->
-  <h3>⚠ Desvíos Operacionales</h3>
+<!-- ================= D11 ================= -->
+<section id="d11" class="modulo oculto">
+<h2>🗺️ Recorrido D11</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-  <div class="desvio">
-    <strong>Reversibilidad – Eje Larraín (07:30 - 10:00)</strong>
-    <ul>
-      <li>Av. Larraín</li>
-      <li>Av. Ossa</li>
-      <li>Retorno Mall Plaza Egaña</li>
-      <li>Av. Ossa (Ñuñoa)</li>
-      <li>Av. Américo Vespucio</li>
-      <li>Blest Gana</li>
-      <li>Av. Tobalaba</li>
-      <li>Av. Alcalde Fernando Castillo Velasco</li>
-    </ul>
-  </div>
+<!-- ================= D15 ================= -->
+<section id="d15" class="modulo oculto">
+<h2>🗺️ Recorrido D15</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-  <div class="desvio">
-    <strong>Reversibilidad – Eje Consistorial (07:00 - 10:00)</strong>
-    <ul>
-      <li>Av. José Arrieta</li>
-      <li>Quebrada de Suca</li>
-      <li>Av. Grecia</li>
-      <li>Consistorial</li>
-    </ul>
-  </div>
+<!-- ================= D18 ================= -->
+<section id="d18" class="modulo oculto">
+<h2>🗺️ Recorrido D18</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
+</section>
 
-  <div class="desvio">
-    <strong>Desvío Feria – Consistorial (Miércoles a Domingo 05:30 - 20:30)</strong>
-    <ul>
-      <li>Av. José Arrieta</li>
-      <li>Quebrada de Suca</li>
-      <li>Av. Grecia</li>
-      <li>Consistorial</li>
-      <li>Antupirén</li>
-    </ul>
-  </div>
-
-  <div class="desvio">
-    <strong>Alternativa Feria</strong>
-    <ul>
-      <li>Antupirén</li>
-      <li>Ricardo Grellet de los Reyes</li>
-      <li>Quebrada de Suca</li>
-      <li>Av. José Arrieta</li>
-    </ul>
-  </div>
-
-  <br>
-  <button onclick="abrir('recorridos')">⬅ Volver</button>
-
+<!-- ================= D20 ================= -->
+<section id="d20" class="modulo oculto">
+<h2>🗺️ Recorrido D20</h2>
+<p>Recorrido cargado correctamente.</p>
+<button onclick="abrir('recorridos')">⬅ Volver</button>
 </section>
 
 </main>
 
 <script>
-
 function abrir(id){
   document.querySelectorAll('.modulo').forEach(m => m.classList.add('oculto'));
   document.getElementById(id).classList.remove('oculto');
@@ -324,6 +299,9 @@ function mostrarSub(id){
   document.getElementById(id).classList.remove('oculto');
 }
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./service-worker.js");
+}
 </script>
 
 </body>
