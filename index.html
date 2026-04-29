@@ -23,7 +23,6 @@
 
 <main>
 
-<!-- ================= MENÚ ================= -->
 <section id="menu" class="menu">
   <button onclick="abrir('protocolo')">📘 Protocolo Buses Eléctricos</button>
   <button onclick="abrir('directorio')">📞 Directorio Telefónico</button>
@@ -31,39 +30,23 @@
   <button onclick="abrir('recorridos')">🗺️ Recorridos Operativos</button>
 </section>
 
-<!-- ================= PROTOCOLO ================= -->
 <section id="protocolo" class="modulo oculto">
-
 <h2>📘 Protocolo Buses Eléctricos</h2>
 
 <button onclick="mostrarSub('regen')">🔋 Frenado Regenerativo</button>
 <button onclick="mostrarSub('conduccion')">🚍 Conducción Eficiente</button>
 <button onclick="mostrarSub('cabina')">💡 Cabina y Sistemas</button>
 
-<!-- REGENERACIÓN -->
 <div id="regen" class="submodulo oculto">
-
 <h3>🔋 Conducción Eficiente y Regeneración</h3>
 
 <p><strong>¿Qué es la regeneración?</strong></p>
-<p>
-Es un sistema inteligente que recupera energía cuando el bus frena o desacelera.
-El motor se convierte en generador y carga la batería mientras reduces velocidad.
-</p>
+<p>Es un sistema inteligente que recupera energía cuando el bus frena o desacelera. El motor se convierte en generador y carga la batería mientras reduces velocidad.</p>
 
 <h4>Cómo funciona el frenado</h4>
-
-<p><strong>1. Suelta el acelerador</strong><br>
-El bus rueda y ya empieza a regenerar energía. ✔ Más eficiente
-</p>
-
-<p><strong>2. Frena suave</strong><br>
-Activa principalmente la regeneración y cuida los frenos.
-</p>
-
-<p><strong>3. Frena fuerte</strong><br>
-Combina regeneración + frenos tradicionales automáticamente.
-</p>
+<p><strong>1. Suelta el acelerador</strong><br>El bus rueda y ya empieza a regenerar energía. ✔ Más eficiente</p>
+<p><strong>2. Frena suave</strong><br>Activa principalmente la regeneración y cuida los frenos.</p>
+<p><strong>3. Frena fuerte</strong><br>Combina regeneración + frenos tradicionales automáticamente.</p>
 
 <h4>Consejos clave</h4>
 <ul>
@@ -77,10 +60,8 @@ Combina regeneración + frenos tradicionales automáticamente.
 
 <h4>Regla de Oro</h4>
 <p><strong>Suelta primero → Frena suave → Anticípate</strong></p>
-
 </div>
 
-<!-- CONDUCCIÓN -->
 <div id="conduccion" class="submodulo oculto">
 <h3>🚍 Conducción Eficiente</h3>
 <ul>
@@ -91,7 +72,6 @@ Combina regeneración + frenos tradicionales automáticamente.
 </ul>
 </div>
 
-<!-- CABINA -->
 <div id="cabina" class="submodulo oculto">
 <h3>💡 Cabina y Sistemas</h3>
 <ul>
@@ -103,77 +83,64 @@ Combina regeneración + frenos tradicionales automáticamente.
 </div>
 
 <br>
-<button onclick="volver()">⬅ Volver</button>
-
+<button onclick="volver()">⬅ Volver al menú</button>
 </section>
 
-<!-- ================= DIRECTORIO ================= -->
 <section id="directorio" class="modulo oculto">
-
 <h2>📞 Directorio Operativo STU</h2>
 
 <h3>Turno AM</h3>
-
 <p><strong>Jefes de Operaciones</strong></p>
-<p>José Bustamante – 968341709</p>
-<p>Gabriel Cornejo – 977964669</p>
+<p>José Bustamante – <a href="tel:+56968341709">968341709</a></p>
+<p>Gabriel Cornejo – <a href="tel:+56977964669">977964669</a></p>
 
 <p><strong>Jefes de Servicio</strong></p>
-<p>Luis Molina – 952089381</p>
-<p>Rodrigo Serrano – 946140880</p>
-<p>Claudio Paz – 964332813</p>
+<p>Luis Molina – <a href="tel:+56952089381">952089381</a></p>
+<p>Rodrigo Serrano – <a href="tel:+56946140880">946140880</a></p>
+<p>Claudio Paz – <a href="tel:+56964332813">964332813</a></p>
 
 <p><strong>Inspectores</strong></p>
-<p>Jackson Arias – 941900512</p>
-<p>Néstor Espinoza – 933449509</p>
-<p>Jeanette Rebolledo – 986254528</p>
-<p>Kathia Pacheco – 954399799</p>
-<p>Ángeles Azócar – 999391910</p>
+<p>Jackson Arias – <a href="tel:+56941900512">941900512</a></p>
+<p>Néstor Espinoza – <a href="tel:+56933449509">933449509</a></p>
+<p>Jeanette Rebolledo – <a href="tel:+56986254528">986254528</a></p>
+<p>Kathia Pacheco – <a href="tel:+56954399799">954399799</a></p>
+<p>Ángeles Azócar – <a href="tel:+56999391910">999391910</a></p>
 
 <h3>Turno PM</h3>
-
 <p><strong>Jefes de Operaciones</strong></p>
-<p>Cristopher Alvear – 962809771</p>
+<p>Cristopher Alvear – <a href="tel:+56962809771">962809771</a></p>
 
 <p><strong>Jefes de Servicio</strong></p>
-<p>Matías Bustamante – 966866758</p>
-<p>David Ramírez – 921948354</p>
+<p>Matías Bustamante – <a href="tel:+56966866758">966866758</a></p>
+<p>David Ramírez – <a href="tel:+56921948354">921948354</a></p>
 
 <p><strong>Inspectores</strong></p>
-<p>Carlos Sáez – 962296645</p>
-<p>Rodolfo Cornejo – 985057590</p>
-<p>Isabel Sánchez – 985450748</p>
+<p>Carlos Sáez – <a href="tel:+56962296645">962296645</a></p>
+<p>Rodolfo Cornejo – <a href="tel:+56985057590">985057590</a></p>
+<p>Isabel Sánchez – <a href="tel:+56985450748">985450748</a></p>
 
 <h3>Turno Nocturno</h3>
-<p>Paola Arredondo – 926843321</p>
-<p>Jorge Monsalve – 949317666</p>
-<p>Lissete Alarcón – 937022016</p>
+<p>Paola Arredondo – <a href="tel:+56926843321">926843321</a></p>
+<p>Jorge Monsalve – <a href="tel:+56949317666">949317666</a></p>
+<p>Lissete Alarcón – <a href="tel:+56937022016">937022016</a></p>
 
 <br>
-<button onclick="volver()">⬅ Volver</button>
-
+<button onclick="volver()">⬅ Volver al menú</button>
 </section>
 
-<!-- ================= INCIDENCIAS ================= -->
 <section id="incidencias" class="modulo oculto">
-
 <h2>📝 Reporte de Incidencias</h2>
-
 <ul>
 <li>Informar a despacho</li>
 <li>Registrar hora y lugar</li>
 <li>Describir problema</li>
 <li>No reiniciar sistemas sin autorización</li>
 </ul>
-
 <br>
-<button onclick="volver()">⬅ Volver</button>
-
+<button onclick="volver()">⬅ Volver al menú</button>
 </section>
 
-<!-- ================= RECORRIDOS ================= -->
 <section id="recorridos" class="modulo oculto">
-
 <h2>🗺️ Recorridos Operativos</h2>
 
 <div class="grid-recorridos">
@@ -182,6 +149,7 @@ Combina regeneración + frenos tradicionales automáticamente.
 <button onclick="abrir('d03')">D03</button>
 <button onclick="abrir('d03c')">D03c</button>
 <button onclick="abrir('d07')">D07</button>
+<button onclick="abrir('d07c')">D07c</button>
 <button onclick="abrir('d08')">D08</button>
 <button onclick="abrir('d09')">D09</button>
 <button onclick="abrir('d10')">D10</button>
@@ -189,120 +157,158 @@ Combina regeneración + frenos tradicionales automáticamente.
 <button onclick="abrir('d15')">D15</button>
 <button onclick="abrir('d18')">D18</button>
 <button onclick="abrir('d20')">D20</button>
-<button>420</button>
+<button onclick="abrir('d420')">420</button>
 </div>
 
 <br>
-<button onclick="volver()">⬅ Volver</button>
-
+<button onclick="volver()">⬅ Volver al menú</button>
 </section>
 
-<!-- ================= D01 ================= -->
+<!-- D01 -->
 <section id="d01" class="modulo oculto">
 <h2>🗺️ Recorrido D01</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
+
+<h3>🧭 Vista rápida del recorrido</h3>
+<div class="mapa-d01">
+<div class="linea"></div>
+<div class="punto">Diagonal Las Torres</div>
+<div class="punto">Álvaro Casanova</div>
+<div class="punto">Antupirén</div>
+<div class="punto">Consistorial</div>
+<div class="punto">Av. Arrieta</div>
+<div class="punto">Larraín</div>
+<div class="punto">Irarrázaval</div>
+</div>
+
+<h3>Sentido Ida</h3>
+<div class="tabla-recorrido">
+<p>Diagonal Las Torres (Peñalolén)</p><p>Álvaro Casanova</p><p>Antupirén</p><p>Consistorial</p><p>Av. José Arrieta</p><p>Diputada Laura Rodríguez (La Reina)</p><p>Talinay</p><p>Quillagua</p><p>Av. Alcalde Fernando Castillo Velasco</p><p>Av. Larraín</p><p>Av. Irarrázaval (Ñuñoa)</p><p>General Alejandro Bernales</p><p>Hamburgo</p>
+</div>
+
+<h3>Sentido Regreso</h3>
+<div class="tabla-recorrido">
+<p>Av. Irarrázaval</p><p>Av. Larraín</p><p>Av. Alcalde Fernando Castillo Velasco</p><p>Quillagua</p><p>Talinay</p><p>Diputada Laura Rodríguez</p><p>Av. José Arrieta</p><p>Consistorial</p><p>Antupirén</p><p>Álvaro Casanova</p><p>Diagonal Las Torres</p>
+</div>
+
+<h3>⚠ Desvíos Operacionales</h3>
+<div class="desvio"><strong>Reversibilidad – Eje Larraín (07:30 - 10:00)</strong><ul><li>Av. Larraín</li><li>Av. Ossa</li><li>Retorno Mall Plaza Egaña</li><li>Av. Ossa (Ñuñoa)</li><li>Av. Américo Vespucio</li><li>Blest Gana</li><li>Av. Tobalaba</li><li>Av. Alcalde Fernando Castillo Velasco</li></ul></div>
+<div class="desvio"><strong>Reversibilidad – Eje Consistorial (07:00 - 10:00)</strong><ul><li>Av. José Arrieta</li><li>Quebrada de Suca</li><li>Av. Grecia</li><li>Consistorial</li></ul></div>
+<div class="desvio"><strong>Desvío Feria – Consistorial (Miércoles a Domingo 05:30 - 20:30)</strong><ul><li>Av. José Arrieta</li><li>Quebrada de Suca</li><li>Av. Grecia</li><li>Consistorial</li><li>Antupirén</li></ul></div>
+<div class="desvio"><strong>Alternativa Feria</strong><ul><li>Antupirén</li><li>Ricardo Grellet de los Reyes</li><li>Quebrada de Suca</li><li>Av. José Arrieta</li></ul></div>
+
+<br><button onclick="abrir('recorridos')">⬅ Volver a recorridos</button>
 </section>
 
-<!-- ================= D02 ================= -->
+<!-- D02 -->
 <section id="d02" class="modulo oculto">
 <h2>🗺️ Recorrido D02</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
+<h3>Sentido Ida</h3>
+<div class="tabla-recorrido">
+<p>San Eugenio (Ñuñoa)</p><p>Av. Irarrázaval</p><p>República de Israel</p><p>Duble Almeyda</p><p>Av. Américo Vespucio</p><p>Av. Ossa (La Reina)</p><p>Av. Simón Bolívar</p><p>Av. Tobalaba</p><p>Av. Alcalde Fernando Castillo Velasco</p><p>Nueva Larraín</p><p>Carlos Ossandón</p><p>Av. Príncipe de Gales</p><p>Nueva Príncipe de Gales</p><p>Av. Las Perdices</p><p>Nueva Príncipe de Gales</p><p>Av. Alcalde Fernando Castillo Velasco</p><p>Álvaro Casanova</p><p>Talinay</p><p>Álvaro Casanova (Peñalolén)</p><p>Diagonal Las Torres</p>
+</div>
+<h3>Sentido Regreso</h3>
+<div class="tabla-recorrido">
+<p>Diagonal Las Torres (Peñalolén)</p><p>Álvaro Casanova</p><p>Talinay</p><p>Álvaro Casanova (La Reina)</p><p>Av. Alcalde Fernando Castillo Velasco</p><p>Av. Las Perdices</p><p>Nueva Príncipe de Gales</p><p>Av. Príncipe de Gales</p><p>Carlos Ossandón</p><p>Av. Alcalde Fernando Castillo Velasco</p><p>Av. Larraín</p><p>Av. Ossa</p><p>Retorno Mall Plaza Egaña</p><p>Av. Ossa (Ñuñoa)</p><p>Av. Eduardo Castillo Velasco</p><p>Lo Encalada</p><p>Crescente Errázuriz</p><p>San Eugenio</p>
+</div>
+<h3>⚠ Desvíos Operacionales</h3>
+<div class="desvio"><strong>Reversibilidad – Ejes Irarrázaval / Larraín (07:30 - 10:00)</strong><ul><li>San Eugenio</li><li>Matta Oriente</li><li>República de Israel</li><li>Duble Almeyda</li></ul></div>
+<div class="desvio"><strong>Reversibilidad – Eje Carlos Ossandón (07:00 - 09:00)</strong><ul><li>Nueva Príncipe de Gales</li><li>Valenzuela Llanos</li><li>Dr. Wenceslao Díaz Gallegos</li><li>Av. Alcalde Fernando Castillo Velasco</li></ul></div>
+<div class="desvio"><strong>Reversibilidad – Eje Carlos Ossandón (17:00 - 21:00)</strong><ul><li>Av. Alcalde Fernando Castillo Velasco</li><li>Dr. Wenceslao Díaz Gallegos</li><li>Valenzuela Llanos</li><li>Nueva Príncipe de Gales</li></ul></div>
+<br><button onclick="abrir('recorridos')">⬅ Volver a recorridos</button>
 </section>
 
-<!-- ================= D03 ================= -->
+<!-- D03 -->
 <section id="d03" class="modulo oculto">
 <h2>🗺️ Recorrido D03</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
+<h3>Sentido Ida</h3>
+<div class="tabla-recorrido">
+<p>Diagonal Las Torres (Peñalolén)</p><p>Los Baqueanos</p><p>Las Parcelas</p><p>Oriental</p><p>Manuel Carvallo</p><p>Javiera Carrera Sur (La Reina)</p><p>Av. Larraín</p><p>Av. Irarrázaval (Ñuñoa)</p><p>Av. Diez de Julio Huamachuco (Santiago)</p><p>Dieciocho</p>
+</div>
+<h3>Sentido Regreso</h3>
+<div class="tabla-recorrido">
+<p>Santa Isabel (Santiago)</p><p>Nataniel Cox</p><p>Copiapó</p><p>Fray Camilo Henríquez</p><p>Av. Diez de Julio Huamachuco</p><p>Av. Irarrázaval (Ñuñoa)</p><p>Av. Larraín (La Reina)</p><p>Paula Jaraquemada</p><p>Cruz Almeyda (Peñalolén)</p><p>Oriental</p><p>Las Parcelas</p><p>Los Baqueanos</p><p>Diagonal Las Torres</p>
+</div>
+<h3>⚠ Desvíos Operacionales</h3>
+<div class="desvio"><strong>Reversibilidad – Ejes Larraín / Irarrázaval / 10 de Julio / Av. Oriental (07:00 - 10:00)</strong><ul><li>Fray Camilo Henríquez</li><li>Av. Diez de Julio Huamachuco</li><li>Portugal</li><li>Santa Isabel</li><li>Av. General Bustamante</li><li>Matta Oriente</li><li>República de Israel</li><li>Duble Almeyda</li><li>Av. Américo Vespucio</li><li>Blest Gana</li><li>Paula Jaraquemada</li><li>Av. José Arrieta</li><li>Av. Tobalaba</li><li>Las Parcelas</li></ul></div>
+<div class="desvio"><strong>Reversibilidad – Eje Av. Oriental (17:00 - 21:00)</strong><ul><li>Paula Jaraquemada</li><li>Av. José Arrieta</li><li>Los Molineros</li><li>Oriental</li></ul></div>
+<div class="desvio"><strong>Feria – Eje 10 de Julio (Domingos 08:00 - 16:00)</strong><ul><li>Av. Irarrázaval</li><li>Av. General Bustamante</li><li>Av. Manuel Antonio Matta</li><li>Av. Santa Rosa</li><li>Av. Diez de Julio Huamachuco</li></ul></div>
+<div class="desvio"><strong>Ciclorecreovía – Gran Irarrázaval (Domingo 09:00 - 14:00)</strong><ul><li>Av. Irarrázaval</li><li>Duble Almeyda</li><li>Ramón Cruz</li><li>Av. Irarrázaval</li></ul></div>
+<br><button onclick="abrir('recorridos')">⬅ Volver a recorridos</button>
 </section>
 
-<!-- ================= D03c ================= -->
+<!-- D03c -->
 <section id="d03c" class="modulo oculto">
 <h2>🗺️ Recorrido D03c</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
+<h3>Recorrido Circunvalar</h3>
+<div class="tabla-recorrido">
+<p>Diagonal Las Torres (Peñalolén)</p><p>Los Baqueanos</p><p>Las Parcelas</p><p>Mariano Sánchez Fontecilla</p><p>Jorge Alessandri (La Reina)</p><p>Talinay</p><p>Diputada Laura Rodríguez</p><p>Av. Alcalde Fernando Castillo Velasco</p><p>Av. Larraín</p><p>Av. Irarrázaval (Ñuñoa)</p><p>Licenciado de las Peñas</p><p>Hamburgo</p><p>Av. Irarrázaval</p><p>Av. Larraín</p><p>Av. Alcalde Fernando Castillo Velasco</p><p>Diputada Laura Rodríguez</p><p>Talinay</p><p>Jorge Alessandri</p><p>Mariano Sánchez Fontecilla</p><p>Las Parcelas</p><p>Los Baqueanos</p><p>Diagonal Las Torres</p>
+</div>
+<h3>⚠ Desvíos Operacionales</h3>
+<div class="desvio"><strong>Reversibilidad – Eje Av. Irarrázaval (Laboral 07:00 - 10:00)</strong><ul><li>Av. Alcalde Fernando Castillo Velasco</li><li>Av. Larraín</li><li>Av. Ossa</li><li>Av. Simón Bolívar</li><li>Av. Tobalaba</li><li>Av. Alcalde Fernando Castillo Velasco</li></ul></div>
+<div class="desvio"><strong>Reversibilidad – Eje Mariano Sánchez Fontecilla (Laboral 07:00 - 09:30)</strong><ul><li>Talinay</li><li>Jorge Alessandri</li><li>Av. José Arrieta</li><li>Av. Tobalaba</li><li>Las Parcelas</li></ul></div>
+<br><button onclick="abrir('recorridos')">⬅ Volver a recorridos</button>
 </section>
 
-<!-- ================= D07 ================= -->
+<!-- D07 -->
 <section id="d07" class="modulo oculto">
 <h2>🗺️ Recorrido D07</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
+<h3>Sentido Ida</h3>
+<div class="tabla-recorrido">
+<p>Diagonal Las Torres (Peñalolén)</p><p>Los Baqueanos</p><p>Río Claro</p><p>Av. Las Perdices</p><p>Antupirén</p><p>Consistorial</p><p>Los Presidentes</p><p>Caracas</p><p>El Valle</p><p>Av. Américo Vespucio</p><p>Rotonda Grecia (Ñuñoa)</p><p>Av. Rodrigo de Araya</p><p>Ramón Cruz (Macul)</p><p>Los Olmos</p><p>Av. Pedro de Valdivia</p><p>Los Espinos</p><p>Castillo Urízar Poniente</p><p>Los Plátanos</p><p>Av. Marathon</p><p>Av. Quilín</p><p>Corredor Vicuña Mackenna</p><p>Salida Corredor Vicuña Mackenna</p><p>Av. Vicuña Mackenna</p><p>Juan Sebastián Bach (San Joaquín)</p><p>Lira</p><p>Av. Isabel Riquelme</p><p>Sierra Bella</p><p>Pintor Cicarelli</p><p>Av. Santa Rosa</p><p>Franklin (Santiago)</p><p>Nataniel Cox</p><p>EIM Franklin</p>
+</div>
+<h3>Sentido Regreso</h3>
+<div class="tabla-recorrido">
+<p>EIM Franklin (Santiago)</p><p>Placer</p><p>San Diego</p><p>Arauco</p><p>Carmen</p><p>Carlos Silva Vildósola (San Joaquín)</p><p>Lira</p><p>Juan Sebastián Bach</p><p>Corredor Vicuña Mackenna</p><p>Salida Corredor Vicuña Mackenna</p><p>Av. Vicuña Mackenna (Macul)</p><p>Escuela Agrícola</p><p>Av. Marathon</p><p>Los Plátanos</p><p>Castillo Urízar Poniente</p><p>Los Espinos</p><p>Av. Pedro de Valdivia</p><p>Los Olmos</p><p>Ramón Cruz</p><p>Av. Rodrigo de Araya</p><p>Rotonda Grecia (Ñuñoa)</p><p>Av. Grecia (Peñalolén)</p><p>Península</p><p>El Valle</p><p>Caracas</p><p>Los Presidentes</p><p>Consistorial</p><p>Antupirén</p><p>Av. Las Perdices</p><p>Río Claro</p><p>Los Baqueanos</p><p>Diagonal Las Torres</p>
+</div>
+<h3>⚠ Desvíos Operacionales</h3>
+<div class="desvio"><strong>Feria – Eje J.S. Bach (Miércoles 06:00 - 18:30)</strong><ul><li>Juan Sebastián Bach</li><li>Franz Liszt</li><li>Franz Schubert</li><li>Av. Isabel Riquelme</li><li>Sierra Bella</li></ul></div>
+<div class="desvio"><strong>Feria – Eje Av. Caracas (Miércoles y sábados 05:30 - 18:30)</strong><ul><li>Los Presidentes</li><li>Lago Rupanco</li><li>El Valle</li></ul></div>
+<div class="desvio"><strong>Cierre EIM Franklin</strong><ul><li>Franklin</li><li>Nataniel Cox</li><li>Placer</li><li>San Diego</li></ul></div>
+<br><button onclick="abrir('recorridos')">⬅ Volver a recorridos</button>
 </section>
 
-<!-- ================= D08 ================= -->
+<!-- D07c -->
+<section id="d07c" class="modulo oculto">
+<h2>🗺️ Recorrido D07c</h2>
+<h3>Servicio Circunvalar</h3>
+<div class="tabla-recorrido">
+<p>Diagonal Las Torres (Peñalolén)</p><p>Álvaro Casanova</p><p>Antupirén</p><p>Consistorial</p><p>Los Presidentes</p><p>Av. Américo Vespucio</p><p>Rotonda Grecia (Ñuñoa)</p><p>Av. Grecia (Peñalolén)</p><p>Península</p><p>El Valle</p><p>Caracas</p><p>Los Presidentes</p><p>Consistorial</p><p>Antupirén</p><p>Álvaro Casanova</p><p>Diagonal Las Torres</p>
+</div>
+<h3>⚠ Desvíos Operacionales</h3>
+<div class="desvio"><strong>Feria – Eje Av. Caracas (Miércoles y sábados 08:00 - 16:00)</strong><ul><li>Caracas</li><li>Lago Riñihue</li><li>Lago Rupanco</li><li>Los Presidentes</li></ul></div>
+<div class="desvio"><strong>Feria – Eje Península / Av. El Valle (Jueves y domingo 05:00 - 18:59)</strong><ul><li>Rotonda Grecia</li><li>Av. Grecia</li><li>Alejandro Sepúlveda</li><li>Duraznal</li><li>Caracas</li></ul></div>
+<br><button onclick="abrir('recorridos')">⬅ Volver a recorridos</button>
+</section>
+
+<!-- D08 -->
 <section id="d08" class="modulo oculto">
-<h2>🗺️ Recorrido D08</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
+<h2>🗺️ Recorrido D08 (Circular)</h2>
+<h3>Recorrido Completo</h3>
+<div class="tabla-recorrido">
+<p>Diagonal Las Torres (Peñalolén)</p><p>Corredor Grecia</p><p>Salida Las Perdices</p><p>Av. Grecia</p><p>Jacarandá</p><p>Quebrada Camarones</p><p>Av. José Arrieta</p><p>Av. Las Perdices</p><p>Talinay (La Reina)</p><p>Quillagua</p><p>Mamiña</p><p>Andacollo</p><p>Av. Alcalde Fernando Castillo Velasco</p><p>Dr. Wenceslao Díaz Gallegos</p><p>Valenzuela Llanos</p><p>Carlos Silva Vildósola</p><p>Av. Padre Hurtado</p><p>Av. Padre Hurtado Sur (Las Condes)</p><p>Av. Francisco Bilbao</p><p>Eliecer Parada</p><p>Av. Tobalaba (Providencia)</p><p>Av. Francisco Bilbao</p><p>Av. Padre Hurtado Sur</p><p>Av. Padre Hurtado</p><p>Av. Príncipe de Gales</p><p>Valenzuela Llanos</p><p>Nueva Valenzuela Llanos</p><p>Av. Alcalde Fernando Castillo Velasco</p><p>Andacollo</p><p>Mamiña</p><p>Quillagua</p><p>Talinay</p><p>Av. Las Perdices</p><p>Av. José Arrieta</p><p>Quebrada Camarones</p><p>Jacarandá</p><p>Corredor Grecia</p><p>Diagonal Las Torres</p>
+</div>
+<br><button onclick="abrir('recorridos')">⬅ Volver a recorridos</button>
 </section>
 
-<!-- ================= D09 ================= -->
+<!-- D09 -->
 <section id="d09" class="modulo oculto">
-<h2>🗺️ Recorrido D09</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
+<h2>🗺️ Recorrido D09 (Circular)</h2>
+<h3>Recorrido Completo</h3>
+<div class="tabla-recorrido">
+<p>Diagonal Las Torres (Peñalolén)</p><p>Corredor Grecia</p><p>Jacarandá</p><p>Quebrada Camarones</p><p>Av. José Arrieta</p><p>Javiera Carrera Sur (La Reina)</p><p>Av. Larraín</p><p>Av. Irarrázaval (Ñuñoa)</p><p>Presidente Battle y Ordóñez</p><p>Jaime Guzmán Errázuriz</p><p>Dr. Pedro Lautaro Ferrer (Providencia)</p><p>Av. Los Leones</p><p>General José Artigas (Ñuñoa)</p><p>Sucre</p><p>Av. Antonio Varas</p><p>Av. Providencia</p><p>Av. Manuel Montt</p><p>Av. Simón Bolívar</p><p>Av. Chile España</p><p>Av. Senador Jaime Guzmán</p><p>Presidente Battle y Ordóñez</p><p>Av. Irarrázaval</p><p>Av. Larraín</p><p>Paula Jaraquemada</p><p>Av. José Arrieta</p><p>Quebrada Camarones</p><p>Jacarandá</p><p>Corredor Grecia</p><p>Diagonal Las Torres</p>
+</div>
+<h3>⚠ Desvíos Operacionales</h3>
+<div class="desvio"><strong>Reversibilidad – Diagonal Oriente AM</strong><ul><li>Av. Simón Bolívar</li><li>Av. Ossa</li><li>Av. Américo Vespucio</li><li>Av. José Arrieta</li></ul></div>
+<div class="desvio"><strong>Reversibilidad – Diagonal Oriente PM</strong><ul><li>Av. Irarrázaval</li><li>Coventry</li><li>Av. Echeñique</li><li>El Aguilucho</li><li>Av. Los Leones</li><li>General José Artigas</li></ul></div>
+<br><button onclick="abrir('recorridos')">⬅ Volver a recorridos</button>
 </section>
 
-<!-- ================= D10 ================= -->
+<!-- D10 -->
 <section id="d10" class="modulo oculto">
 <h2>🗺️ Recorrido D10</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
-</section>
-
-<!-- ================= D11 ================= -->
-<section id="d11" class="modulo oculto">
-<h2>🗺️ Recorrido D11</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
-</section>
-
-<!-- ================= D15 ================= -->
-<section id="d15" class="modulo oculto">
-<h2>🗺️ Recorrido D15</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
-</section>
-
-<!-- ================= D18 ================= -->
-<section id="d18" class="modulo oculto">
-<h2>🗺️ Recorrido D18</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
-</section>
-
-<!-- ================= D20 ================= -->
-<section id="d20" class="modulo oculto">
-<h2>🗺️ Recorrido D20</h2>
-<p>Recorrido cargado correctamente.</p>
-<button onclick="abrir('recorridos')">⬅ Volver</button>
-</section>
-
-</main>
-
-<script>
-function abrir(id){
-  document.querySelectorAll('.modulo').forEach(m => m.classList.add('oculto'));
-  document.getElementById(id).classList.remove('oculto');
-  window.scrollTo(0,0);
-}
-
-function volver(){
-  document.querySelectorAll('.modulo').forEach(m => m.classList.add('oculto'));
-}
-
-function mostrarSub(id){
-  document.querySelectorAll('.submodulo').forEach(s => s.classList.add('oculto'));
-  document.getElementById(id).classList.remove('oculto');
-}
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./service-worker.js");
-}
-</script>
-
-</body>
-</html>
+<h3>Sentido Ida</h3>
+<div class="tabla-recorrido">
+<p>Av. Vicuña Mackenna (San Joaquín)</p><p>Metro Estación Carlos Valdovinos</p><p>Corredor Vicuña Mackenna</p><p>Salida Corredor Vicuña Mackenna</p><p>Av. Vicuña Mackenna (Macul)</p><p>Escuela Agrícola</p><p>Av. Macul</p><p>Luis Valenzuela</p><p>Ramón Cruz</p><p>Av. Quilín</p><p>Rotonda Quilín</p><p>Av. Quilín</p><p>San Vicente de Paul</p><p>Doctor Amador Neghme Rodríguez</p><p>Av. Las Torres (Peñalolén)</p><p>Av. Tobalaba</p><p>Av. Quilín</p><p>Mariano Sánchez Fontecilla</p><p>Los Presidentes</p><p>Caracas</p><p>El Valle</p><p>Av. Américo Vespucio</p><p>Rotonda Grecia</p><p>Av. Américo Vespucio</p><p>Av. Egaña</p><p>Av. José Arrieta</p><p>Cruz Almeyda</p><p>Oriental</p><p>Las Parcelas</p><p>Consistorial</p><p>Av. José Arrieta</p><p>Diagonal Las Torres</p>
+</div>
+<h3>Sentido Regreso</h3>
+<div class="ta
