@@ -1,5 +1,5 @@
 /* ============================= */
-/* RESET BASE */
+/* BASE */
 /* ============================= */
 
 * {
@@ -8,19 +8,13 @@
 }
 
 html, body {
-  height: auto;
+  margin: 0;
+  min-height: 100%;
 }
 
 body {
-  margin: 0;
   background: #eef1f4;
-  color: #222;
-
-  display: flex;
-  flex-direction: column;
-
-  /* 🔥 CLAVE REAL */
-  min-height: 100vh;
+  color: #1f2933;
   overflow-y: auto;
 }
 
@@ -29,8 +23,10 @@ body {
 /* ============================= */
 
 .header-corporativo {
-  background: #5AA72F;
+  background: linear-gradient(90deg, #4fa52f, #3f8f25);
   padding: 14px 20px;
+  color: white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
 }
 
 .header-contenido {
@@ -41,22 +37,25 @@ body {
 }
 
 .logo {
-  height: 50px;
-  margin-right: 20px;
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  background: white;
+  padding: 5px;
+  border-radius: 4px;
+  margin-right: 18px;
 }
 
 .titulo-header h1 {
   margin: 0;
-  font-size: 20px;
-  color: white;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
 }
 
 .titulo-header p {
-  margin: 2px 0 0;
+  margin: 4px 0 0;
   font-size: 13px;
-  color: white;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /* ============================= */
@@ -64,26 +63,33 @@ body {
 /* ============================= */
 
 main {
-  flex: 1;
-  padding: 20px;
-  max-width: 900px;
+  max-width: 960px;
   width: 100%;
-  margin: auto;
-
-  /* 🔥 CLAVES IMPORTANTES */
-  overflow: visible;
-  min-height: 0;
+  margin: 0 auto;
+  padding: 22px;
 }
 
 /* ============================= */
-/* MENÚ */
+/* MENÚ PRINCIPAL */
 /* ============================= */
 
 .menu {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
+  display: grid;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.menu button {
+  background: white;
+  border-left: 6px solid #4fa52f;
+  border-top: 1px solid #d9dee3;
+  border-right: 1px solid #d9dee3;
+  border-bottom: 1px solid #d9dee3;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
 }
 
 /* ============================= */
@@ -91,75 +97,140 @@ main {
 /* ============================= */
 
 button {
-  padding: 14px;
+  width: 100%;
+  padding: 14px 16px;
   font-size: 15px;
-  border: 1px solid #dcdcdc;
-  border-radius: 4px;
-  background: white;
+  border: 1px solid #d6dbe0;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2933;
   cursor: pointer;
-  transition: all 0.2s ease;
   text-align: left;
-  font-weight: 500;
+  font-weight: 600;
+  transition: 0.2s ease;
 }
 
 button:hover {
-  background: #f2f2f2;
-  border-color: #c8c8c8;
+  background: #f4f7f4;
+  border-color: #4fa52f;
+}
+
+button:active {
+  transform: scale(0.99);
 }
 
 /* ============================= */
-/* MODULOS */
+/* MÓDULOS */
 /* ============================= */
 
 .modulo {
-  background: white;
-  padding: 25px;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  margin-top: 20px;
-  border-top: 4px solid #5AA72F;
-
+  background: #ffffff;
+  margin-top: 16px;
+  padding: 26px;
+  border-radius: 8px;
+  border-top: 6px solid #4fa52f;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   width: 100%;
-
-  /* 🔥 FIX REAL */
-  height: auto;
-  min-height: 100%;
-  max-height: none;
   overflow: visible;
 }
 
-/* ============================= */
-/* SUBMODULOS */
-/* ============================= */
+.modulo h2 {
+  margin: 0 0 18px;
+  font-size: 26px;
+  color: #151a1f;
+  border-bottom: 2px solid #4fa52f;
+  padding-bottom: 10px;
+}
 
-.submodulo {
-  margin-top: 15px;
-  padding: 15px;
-  background: #f9f9f9;
-  border-left: 4px solid #5AA72F;
-  border-radius: 4px;
+.modulo h3 {
+  margin-top: 24px;
+  font-size: 20px;
+  color: #263238;
+}
+
+.modulo h4 {
+  margin-top: 20px;
+  font-size: 17px;
+  color: #344054;
+}
+
+.modulo p,
+.modulo li {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.modulo ul {
+  padding-left: 20px;
 }
 
 /* ============================= */
-/* GRID RECORRIDOS */
+/* SUBMÓDULOS */
+/* ============================= */
+
+.submodulo {
+  margin-top: 18px;
+  padding: 18px;
+  background: #f8faf8;
+  border-left: 5px solid #4fa52f;
+  border-radius: 6px;
+}
+
+.submodulo h3 {
+  margin-top: 0;
+}
+
+/* ============================= */
+/* RECORRIDOS */
 /* ============================= */
 
 .grid-recorridos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-  gap: 10px;
-  margin-top: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.grid-recorridos button {
+  text-align: center;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 18px 10px;
+  border-radius: 8px;
+  background: #f9fbf9;
+  border: 1px solid #cfd8dc;
+}
+
+.grid-recorridos button:hover {
+  background: #eaf5e7;
+  border-color: #4fa52f;
 }
 
 /* ============================= */
-/* TABLA RECORRIDO */
+/* TABLAS DE RECORRIDO */
 /* ============================= */
 
+.tabla-recorrido {
+  margin-top: 10px;
+  border: 1px solid #dde3e8;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
 .tabla-recorrido p {
-  margin: 6px 0;
-  padding: 10px;
-  background: #f5f5f5;
-  border-radius: 4px;
+  margin: 0;
+  padding: 11px 14px;
+  border-bottom: 1px solid #edf0f2;
+  font-size: 15px;
+}
+
+.tabla-recorrido p:nth-child(even) {
+  background: #f8fafb;
+}
+
+.tabla-recorrido p:last-child {
+  border-bottom: none;
 }
 
 /* ============================= */
@@ -167,79 +238,137 @@ button:hover {
 /* ============================= */
 
 .desvio {
-  margin-top: 15px;
-  padding: 12px;
-  background: #fff4e5;
-  border-left: 4px solid #ff9800;
-  border-radius: 4px;
+  margin-top: 16px;
+  padding: 16px;
+  background: #fff7e8;
+  border-left: 6px solid #f59e0b;
+  border-radius: 8px;
+}
+
+.desvio strong {
+  display: block;
+  color: #7a3e00;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 .desvio ul {
   margin: 8px 0 0;
-  padding-left: 18px;
 }
 
 /* ============================= */
-/* FOOTER */
+/* MAPA VISUAL D01 */
 /* ============================= */
-
-footer {
-  padding: 18px;
-  background: #2c2c2c;
-  color: white;
-  text-align: center;
-  font-size: 12px;
-}
-
-/* ============================= */
-/* VISIBILIDAD */
-/* ============================= */
-
-.oculto {
-  display: none;
-}
-body {
-  overflow-y: auto;
-}
-
-main {
-  min-height: 0;
-}
-
-.modulo {
-  min-height: 100%;
-}
-/* ================= MAPA D01 ================= */
 
 .mapa-d01 {
   position: relative;
   margin: 20px 0;
-  padding-left: 20px;
+  padding-left: 28px;
 }
 
 .mapa-d01 .linea {
   position: absolute;
-  left: 6px;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: #5AA72F;
+  left: 8px;
+  top: 4px;
+  bottom: 4px;
+  width: 5px;
+  background: #4fa52f;
+  border-radius: 10px;
 }
 
 .mapa-d01 .punto {
   position: relative;
-  margin: 12px 0;
-  padding-left: 15px;
-  font-size: 14px;
+  margin: 14px 0;
+  padding: 10px 12px;
+  background: #f5faf4;
+  border: 1px solid #d9ead5;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .mapa-d01 .punto::before {
   content: "";
   position: absolute;
-  left: -12px;
-  top: 6px;
-  width: 10px;
-  height: 10px;
-  background: #5AA72F;
+  left: -26px;
+  top: 50%;
+  width: 13px;
+  height: 13px;
+  background: #4fa52f;
+  border: 3px solid white;
   border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 0 2px #4fa52f;
+}
+
+/* ============================= */
+/* DIRECTORIO */
+/* ============================= */
+
+#directorio h3 {
+  border-left: 5px solid #4fa52f;
+  padding-left: 10px;
+}
+
+#directorio a {
+  color: #3f8f25;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#directorio a:hover {
+  text-decoration: underline;
+}
+
+/* ============================= */
+/* ESTADOS */
+/* ============================= */
+
+.oculto {
+  display: none !important;
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 600px) {
+  .header-contenido {
+    align-items: center;
+  }
+
+  .logo {
+    width: 52px;
+    height: 52px;
+    margin-right: 12px;
+  }
+
+  .titulo-header h1 {
+    font-size: 18px;
+  }
+
+  .titulo-header p {
+    font-size: 12px;
+  }
+
+  main {
+    padding: 14px;
+  }
+
+  .modulo {
+    padding: 18px;
+  }
+
+  .modulo h2 {
+    font-size: 22px;
+  }
+
+  .menu button {
+    font-size: 16px;
+    padding: 17px;
+  }
+
+  .grid-recorridos {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
