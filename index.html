@@ -22,8 +22,28 @@
 </header>
 
 <main>
+<!-- ================= PRE-SALIDA ================= -->
+<section id="pre-salida" class="pre-salida">
 
-<section id="menu" class="menu">
+  <h2>🟢 Preparación antes del servicio</h2>
+
+  <p class="intro-pre">
+    Revisa estos puntos antes de iniciar el recorrido. Esta guía está pensada para preparación operativa, no para uso durante la conducción.
+  </p>
+
+  <div class="checklist">
+    <label><input type="checkbox"> 🔋 Nivel de batería revisado</label>
+    <label><input type="checkbox"> 💡 Sin alertas críticas en tablero</label>
+    <label><input type="checkbox"> 🚪 Puertas verificadas</label>
+    <label><input type="checkbox"> 🧭 Recorrido y desvíos revisados</label>
+    <label><input type="checkbox"> ❄️ Climatización ajustada de forma eficiente</label>
+    <label><input type="checkbox"> 🔋 Conducción regenerativa recordada</label>
+  </div>
+
+  <button class="btn-iniciar" onclick="entrarApp()">Iniciar revisión operativa</button>
+
+</section>
+<section id="menu" class="menu oculto">
   <button onclick="abrir('protocolo')">📘 Protocolo Buses Eléctricos</button>
   <button onclick="abrir('directorio')">📞 Directorio Telefónico</button>
   <button onclick="abrir('incidencias')">📝 Reporte de Incidencias</button>
@@ -408,6 +428,13 @@ function mostrarSub(id){
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./service-worker.js");
 }
+
+function entrarApp() {
+  document.getElementById('pre-salida').classList.add('oculto');
+  document.getElementById('menu').classList.remove('oculto');
+  window.scrollTo(0,0);
+}
+</script>
 </script>
 
 </body>
