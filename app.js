@@ -11,3 +11,8 @@ function volver() {
 }
 function abrirRecorrido(nombre) { ... }
 function volverRecorridos() { ... }
+function irA(modulo) {
+  document.getElementById('pre-salida').classList.add('oculto');
+  document.getElementById('menu').classList.remove('oculto');
+  mostrarModulo(modulo);
+}
