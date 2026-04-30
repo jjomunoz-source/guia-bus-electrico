@@ -372,3 +372,59 @@ button:active {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+/* ============================= */
+/* PANTALLA PRE-SALIDA */
+/* ============================= */
+
+.pre-salida {
+  background: #ffffff;
+  margin-top: 16px;
+  padding: 26px;
+  border-radius: 8px;
+  border-top: 6px solid #4fa52f;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.pre-salida h2 {
+  margin-top: 0;
+  font-size: 26px;
+  border-bottom: 2px solid #4fa52f;
+  padding-bottom: 10px;
+}
+
+.intro-pre {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #374151;
+}
+
+.checklist {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.checklist label {
+  background: #f8faf8;
+  border: 1px solid #d9ead5;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.checklist input {
+  margin-right: 8px;
+  transform: scale(1.2);
+}
+
+.btn-iniciar {
+  background: #4fa52f;
+  color: white;
+  text-align: center;
+  font-weight: 800;
+  border: none;
+}
+
+.btn-iniciar:hover {
+  background: #3f8f25;
+}
