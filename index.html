@@ -35,10 +35,16 @@
     <label><input type="checkbox"> 🔋 Nivel de batería revisado</label>
     <label><input type="checkbox"> 💡 Sin alertas críticas en tablero</label>
     <label><input type="checkbox"> 🚪 Puertas verificadas</label>
-    <label><input type="checkbox"> 🧭 Recorrido y desvíos revisados</label>
+    
+    <div class="item-check">
+  <button onclick="irA('recorridos')">🧭 Revisar recorrido y desvíos</button>
+  <span class="estado" id="ok-recorrido">Pendiente</span>
+</div>
     <label><input type="checkbox"> ❄️ Climatización ajustada de forma eficiente</label>
-    <label><input type="checkbox"> 🔋 Conducción regenerativa recordada</label>
-  </div>
+    <div class="item-check">
+  <button onclick="irA('protocolo')">🔋 Revisar conducción y regeneración</button>
+  <span class="estado" id="ok-regen">Pendiente</span>
+</div>
 
   <button class="btn-iniciar" onclick="entrarApp()">Iniciar revisión operativa</button>
 
