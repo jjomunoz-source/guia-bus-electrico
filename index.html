@@ -66,6 +66,7 @@
   <button onclick="abrir('reporte-fallas')">🛠️ Reportar falla del bus</button>
   <button onclick="abrir('incidencias')">⚠️ Protocolo de Incidencias</button>
   <button onclick="abrir('recorridos')">🗺️ Recorridos Operativos</button>
+  <button class="menu-interno" onclick="abrir('gestion-operativa')">🔐 Gestión Operativa (demo)</button>
 </section>
 
 <section id="protocolo" class="modulo oculto">
@@ -357,6 +358,96 @@
     <strong>Notificaciones previstas:</strong>
     Check Bus · Operaciones · Taller
     <small>Los correos se configurarán después de su confirmación.</small>
+  </div>
+
+  <br>
+  <button onclick="volver()">⬅ Volver al menú</button>
+</section>
+
+<section id="gestion-operativa" class="modulo oculto">
+  <p class="eyebrow">Acceso exclusivo para áreas autorizadas</p>
+  <h2>🔐 Gestión Operativa</h2>
+
+  <div id="gestion-acceso" class="panel-acceso-demo">
+    <h3>Vista interna de demostración</h3>
+    <p>
+      Simula el acceso de cada área. La versión definitiva utilizará usuarios corporativos
+      mediante Cloudflare Access.
+    </p>
+    <form id="gestion-acceso-form" class="form-operativo">
+      <div class="campo campo-ancho">
+        <label for="gestion-rol">Perfil que deseas presentar</label>
+        <select id="gestion-rol" required>
+          <option value="">Seleccionar perfil</option>
+          <option value="Check Bus">Check Bus</option>
+          <option value="Taller">Taller</option>
+          <option value="Operaciones">Operaciones</option>
+          <option value="Despacho">Despacho</option>
+          <option value="Administrador">Administrador</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-primario campo-ancho">Ingresar a la demostración</button>
+    </form>
+  </div>
+
+  <div id="gestion-panel" class="oculto">
+    <div class="gestion-cabecera">
+      <div>
+        <span class="texto-secundario">Sesión demostrativa</span>
+        <strong id="gestion-usuario"></strong>
+      </div>
+      <button id="gestion-salir" type="button" class="btn-compacto">Cerrar sesión</button>
+    </div>
+
+    <div class="metricas-gestion">
+      <article>
+        <span>Tickets abiertos</span>
+        <strong id="metrica-abiertos">0</strong>
+      </article>
+      <article class="metrica-critica">
+        <span>Fallas críticas</span>
+        <strong id="metrica-criticos">0</strong>
+      </article>
+      <article>
+        <span>Desvíos vigentes</span>
+        <strong id="metrica-desvios">0</strong>
+      </article>
+    </div>
+
+    <div class="tabs-gestion" role="tablist" aria-label="Secciones de gestión">
+      <button type="button" class="tab-gestion activo" data-gestion-tab="tickets">🛠️ Fallas</button>
+      <button type="button" class="tab-gestion" data-gestion-tab="desvios">🚧 Desvíos</button>
+    </div>
+
+    <div id="gestion-tickets" class="panel-tab">
+      <div class="barra-filtros">
+        <div class="campo">
+          <label for="gestion-buscar">Buscar ticket o bus</label>
+          <input id="gestion-buscar" type="search" placeholder="STU-2026-0001, bus o patente">
+        </div>
+        <div class="campo">
+          <label for="gestion-filtro-estado">Estado</label>
+          <select id="gestion-filtro-estado">
+            <option value="">Todos</option>
+            <option>Reportada</option>
+            <option>Recibida</option>
+            <option>En revisión</option>
+            <option>En reparación</option>
+            <option>Pendiente de validación</option>
+            <option>Lista para servicio</option>
+            <option>Cerrada</option>
+          </select>
+        </div>
+      </div>
+      <div id="gestion-lista-tickets" class="lista-operativa" aria-live="polite"></div>
+    </div>
+
+    <div id="gestion-desvios" class="panel-tab oculto">
+      <div id="gestion-lista-desvios" class="lista-operativa" aria-live="polite"></div>
+      <button type="button" class="btn-secundario" onclick="abrir('desvios-activos')">
+        Ir a publicación de desvíos
+      </button>
+    </div>
   </div>
 
   <br>
