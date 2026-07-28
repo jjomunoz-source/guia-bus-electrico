@@ -448,3 +448,124 @@ input:focus-visible {
   margin: 8px 0 0;
   line-height: 1.45;
 }
+
+/* ============================= */
+/* DIRECTORIO PROTEGIDO */
+/* ============================= */
+
+.directorio-acceso {
+  margin-top: 22px;
+  padding: 18px;
+  background: #f8faf8;
+  border: 1px solid #d9ead5;
+  border-left: 5px solid #4fa52f;
+  border-radius: 8px;
+}
+
+.directorio-acceso h3 {
+  margin-top: 0;
+}
+
+.directorio-acceso label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.directorio-form-fila {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) minmax(160px, auto);
+  gap: 10px;
+}
+
+.directorio-form-fila input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px;
+  border: 1px solid #aeb8c2;
+  border-radius: 6px;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+}
+
+.directorio-form-fila button {
+  width: auto;
+  text-align: center;
+  background: #4fa52f;
+  color: white;
+}
+
+.directorio-mensaje {
+  min-height: 24px;
+  margin: 10px 0 0;
+  font-weight: 700;
+}
+
+.directorio-mensaje.error {
+  color: #b42318;
+}
+
+.directorio-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 18px 0;
+  padding: 12px 14px;
+  background: #eaf5e7;
+  border-radius: 8px;
+}
+
+.directorio-encabezado p {
+  margin: 0;
+}
+
+.directorio-encabezado button {
+  width: auto;
+}
+
+.directorio-grupo {
+  margin: 18px 0;
+  padding: 16px;
+  background: #f8fafb;
+  border-radius: 8px;
+}
+
+.directorio-grupo h3 {
+  margin: 0 0 10px;
+  border-left: 5px solid #4fa52f;
+  padding-left: 10px;
+}
+
+.directorio-contacto {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid #dde3e8;
+}
+
+.directorio-contacto:last-child {
+  border-bottom: 0;
+}
+
+.directorio-contacto a {
+  color: #2f751b;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .directorio-form-fila {
+    grid-template-columns: 1fr;
+  }
+
+  .directorio-form-fila button {
+    width: 100%;
+  }
+
+  .directorio-contacto {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

@@ -1,9 +1,10 @@
-const CACHE_NAME = "guia-stu-v18";
+const CACHE_NAME = "guia-stu-v19";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./style.css",
+  "./directory-config.js",
   "./app.js",
   "./manifest.json",
   "./logo-stu.png",
