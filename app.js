@@ -310,7 +310,13 @@ document.getElementById("falla-form")?.addEventListener("submit", evento => {
     descripcion: document.getElementById("falla-descripcion").value.trim(),
     enPatio: document.getElementById("falla-en-patio").checked,
     estado: "Reportada",
-    creado: new Date().toISOString()
+    creado: new Date().toISOString(),
+    responsable: "",
+    historial: [{
+      fecha: new Date().toISOString(),
+      autor: "Conductor",
+      detalle: "Reporte creado"
+    }]
   });
   guardarLocal(FALLAS_DEMO_KEY, reportes);
 
@@ -345,6 +351,269 @@ function prepararFechasDesvio() {
 
 prepararFechasDesvio();
 renderizarDesvios();
+
+const ESTADOS_TICKET = [
+  "Reportada",
+  "Recibida",
+  "En revisión",
+  "En reparación",
+  "Pendiente de validación",
+  "Lista para servicio",
+  "Cerrada"
+];
+
+let rolGestionActual = "";
+
+function estaTicketAbierto(ticket) {
+  return ticket.estado !== "Cerrada";
+}
+
+function clasePrioridad(prioridad) {
+  if (prioridad === "critica") return "badge-critico";
+  if (prioridad === "limitante") return "badge-alerta";
+  return "badge-menor";
+}
+
+function nombrePrioridad(prioridad) {
+  if (prioridad === "critica") return "Crítica";
+  if (prioridad === "limitante") return "Limitante";
+  return "Menor";
+}
+
+function renderizarMetricasGestion() {
+  const tickets = leerLocal(FALLAS_DEMO_KEY);
+  const abiertos = tickets.filter(estaTicketAbierto);
+  document.getElementById("metrica-abiertos").textContent = String(abiertos.length);
+  document.getElementById("metrica-criticos").textContent =
+    String(abiertos.filter(ticket => ticket.prioridad === "critica").length);
+  document.getElementById("metrica-desvios").textContent =
+    String(obtenerDesviosVigentes().length);
+}
+
+function opcionesEstado(estadoActual) {
+  return ESTADOS_TICKET.map(estado =>
+    `<option${estado === estadoActual ? " selected" : ""}>${estado}</option>`
+  ).join("");
+}
+
+function renderizarTicketsGestion() {
+  const contenedor = document.getElementById("gestion-lista-tickets");
+  if (!contenedor) return;
+
+  const busqueda = document.getElementById("gestion-buscar").value.trim().toLowerCase();
+  const filtroEstado = document.getElementById("gestion-filtro-estado").value;
+  const tickets = leerLocal(FALLAS_DEMO_KEY)
+    .filter(ticket => {
+      const texto = `${ticket.ticket} ${ticket.bus} ${ticket.patente} ${ticket.tipo}`.toLowerCase();
+      return (!busqueda || texto.includes(busqueda)) &&
+        (!filtroEstado || ticket.estado === filtroEstado);
+    })
+    .sort((a, b) => new Date(b.creado) - new Date(a.creado));
+
+  if (!tickets.length) {
+    contenedor.innerHTML = `
+      <div class="estado-vacio">
+        <span aria-hidden="true">📭</span>
+        <strong>No hay tickets para mostrar</strong>
+        <p>Crea un reporte desde el módulo del conductor para comprobar el seguimiento.</p>
+        <button type="button" class="btn-secundario" data-ticket-ejemplo>
+          Cargar caso de ejemplo
+        </button>
+      </div>`;
+    return;
+  }
+
+  contenedor.innerHTML = tickets.map(ticket => {
+    const historial = (ticket.historial || [{
+      fecha: ticket.creado,
+      autor: "Conductor",
+      detalle: "Reporte creado"
+    }]).slice().reverse();
+
+    return `
+      <article class="ticket-gestion ${ticket.prioridad === "critica" && estaTicketAbierto(ticket) ? "ticket-critico" : ""}">
+        <div class="ticket-cabecera">
+          <div>
+            <span class="ticket-numero">${escaparTexto(ticket.ticket)}</span>
+            <h3>Bus ${escaparTexto(ticket.bus)} · ${escaparTexto(ticket.patente)}</h3>
+          </div>
+          <span class="badge-prioridad ${clasePrioridad(ticket.prioridad)}">
+            ${nombrePrioridad(ticket.prioridad)}
+          </span>
+        </div>
+        <div class="ticket-datos">
+          <p><strong>Falla:</strong> ${escaparTexto(ticket.tipo)}</p>
+          <p><strong>Ubicación:</strong> ${escaparTexto(ticket.ubicacion)}</p>
+          <p><strong>Servicio:</strong> ${escaparTexto(ticket.servicio || "No indicado")}</p>
+          <p><strong>Estado:</strong> ${escaparTexto(ticket.estado)}</p>
+          <p class="campo-completo"><strong>Descripción:</strong> ${escaparTexto(ticket.descripcion)}</p>
+          ${ticket.enPatio ? `<p class="campo-completo alerta-patio">🅿️ Bus informado en patio</p>` : ""}
+        </div>
+        <details class="gestion-ticket-acciones">
+          <summary>Actualizar seguimiento</summary>
+          <div class="form-operativo">
+            <div class="campo">
+              <label for="estado-${ticket.ticket}">Nuevo estado</label>
+              <select id="estado-${ticket.ticket}" data-ticket-estado="${ticket.ticket}">
+                ${opcionesEstado(ticket.estado)}
+              </select>
+            </div>
+            <div class="campo">
+              <label for="responsable-${ticket.ticket}">Responsable</label>
+              <input id="responsable-${ticket.ticket}" data-ticket-responsable="${ticket.ticket}"
+                maxlength="80" value="${escaparTexto(ticket.responsable || rolGestionActual)}">
+            </div>
+            <div class="campo campo-ancho">
+              <label for="nota-${ticket.ticket}">Observación</label>
+              <textarea id="nota-${ticket.ticket}" data-ticket-nota="${ticket.ticket}"
+                rows="3" maxlength="400" placeholder="Diagnóstico, reparación o instrucción"></textarea>
+            </div>
+            <button type="button" class="btn-primario campo-ancho"
+              data-actualizar-ticket="${ticket.ticket}">Guardar actualización</button>
+          </div>
+        </details>
+        <details class="historial-ticket">
+          <summary>Historial (${historial.length})</summary>
+          <ol>
+            ${historial.map(item => `
+              <li>
+                <strong>${escaparTexto(item.detalle)}</strong>
+                <span>${escaparTexto(item.autor)} · ${formatearFecha(item.fecha)}</span>
+              </li>`).join("")}
+          </ol>
+        </details>
+      </article>`;
+  }).join("");
+}
+
+function renderizarDesviosGestion() {
+  const contenedor = document.getElementById("gestion-lista-desvios");
+  if (!contenedor) return;
+  const desvios = obtenerDesviosVigentes();
+
+  if (!desvios.length) {
+    contenedor.innerHTML = `
+      <div class="estado-vacio">
+        <span aria-hidden="true">✅</span>
+        <strong>Sin desvíos activos</strong>
+        <p>Despacho puede publicar uno desde el módulo de Desvíos activos.</p>
+      </div>`;
+    return;
+  }
+
+  contenedor.innerHTML = desvios.map(desvio => `
+    <article class="tarjeta-desvio">
+      <div class="tarjeta-desvio-cabecera">
+        <span class="servicio">${escaparTexto(desvio.servicio)}</span>
+        <span class="vigencia">Hasta ${formatearFecha(desvio.fin)}</span>
+      </div>
+      <h3>${escaparTexto(desvio.sector)}</h3>
+      <p>${escaparTexto(desvio.instrucciones)}</p>
+      <button type="button" class="btn-secundario"
+        data-gestion-cerrar-desvio="${desvio.id}">Finalizar desvío</button>
+    </article>`).join("");
+}
+
+function renderizarGestion() {
+  renderizarMetricasGestion();
+  renderizarTicketsGestion();
+  renderizarDesviosGestion();
+}
+
+function crearTicketEjemplo() {
+  const reportes = leerLocal(FALLAS_DEMO_KEY);
+  const ahora = new Date().toISOString();
+  reportes.push({
+    ticket: `STU-${new Date().getFullYear()}-${String(reportes.length + 1).padStart(4, "0")}`,
+    bus: "1208",
+    patente: "STUD08",
+    conductor: "Conductor de demostración",
+    identificacion: "DEMO-01",
+    servicio: "D08",
+    ubicacion: "Patio de carga",
+    tipo: "Limpiaparabrisas",
+    prioridad: "critica",
+    descripcion: "Limpiaparabrisas no responde durante lluvia intensa.",
+    enPatio: true,
+    estado: "Reportada",
+    responsable: "",
+    creado: ahora,
+    historial: [{ fecha: ahora, autor: "Conductor", detalle: "Reporte creado" }]
+  });
+  guardarLocal(FALLAS_DEMO_KEY, reportes);
+  renderizarGestion();
+}
+
+document.getElementById("gestion-acceso-form")?.addEventListener("submit", evento => {
+  evento.preventDefault();
+  rolGestionActual = document.getElementById("gestion-rol").value;
+  document.getElementById("gestion-usuario").textContent = rolGestionActual;
+  document.getElementById("gestion-acceso").classList.add("oculto");
+  document.getElementById("gestion-panel").classList.remove("oculto");
+  renderizarGestion();
+});
+
+document.getElementById("gestion-salir")?.addEventListener("click", () => {
+  rolGestionActual = "";
+  document.getElementById("gestion-panel").classList.add("oculto");
+  document.getElementById("gestion-acceso").classList.remove("oculto");
+  document.getElementById("gestion-acceso-form").reset();
+});
+
+document.querySelector(".tabs-gestion")?.addEventListener("click", evento => {
+  const boton = evento.target.closest("[data-gestion-tab]");
+  if (!boton) return;
+  document.querySelectorAll(".tab-gestion").forEach(tab => tab.classList.remove("activo"));
+  boton.classList.add("activo");
+  document.querySelectorAll(".panel-tab").forEach(panel => panel.classList.add("oculto"));
+  document.getElementById(`gestion-${boton.dataset.gestionTab}`).classList.remove("oculto");
+});
+
+document.getElementById("gestion-buscar")?.addEventListener("input", renderizarTicketsGestion);
+document.getElementById("gestion-filtro-estado")?.addEventListener("change", renderizarTicketsGestion);
+
+document.getElementById("gestion-lista-tickets")?.addEventListener("click", evento => {
+  if (evento.target.closest("[data-ticket-ejemplo]")) {
+    crearTicketEjemplo();
+    return;
+  }
+
+  const boton = evento.target.closest("[data-actualizar-ticket]");
+  if (!boton) return;
+  const codigo = boton.dataset.actualizarTicket;
+  const tickets = leerLocal(FALLAS_DEMO_KEY);
+  const ticket = tickets.find(item => item.ticket === codigo);
+  if (!ticket) return;
+
+  const nuevoEstado = document.querySelector(`[data-ticket-estado="${codigo}"]`).value;
+  const responsable = document.querySelector(`[data-ticket-responsable="${codigo}"]`).value.trim();
+  const nota = document.querySelector(`[data-ticket-nota="${codigo}"]`).value.trim();
+  const detalleEstado = ticket.estado === nuevoEstado
+    ? "Seguimiento actualizado"
+    : `Estado: ${ticket.estado} → ${nuevoEstado}`;
+
+  ticket.estado = nuevoEstado;
+  ticket.responsable = responsable;
+  ticket.historial = ticket.historial || [];
+  ticket.historial.push({
+    fecha: new Date().toISOString(),
+    autor: rolGestionActual,
+    detalle: nota ? `${detalleEstado}. ${nota}` : detalleEstado
+  });
+  guardarLocal(FALLAS_DEMO_KEY, tickets);
+  renderizarGestion();
+});
+
+document.getElementById("gestion-lista-desvios")?.addEventListener("click", evento => {
+  const boton = evento.target.closest("[data-gestion-cerrar-desvio]");
+  if (!boton) return;
+  guardarLocal(
+    DESVIOS_DEMO_KEY,
+    leerLocal(DESVIOS_DEMO_KEY).filter(desvio => desvio.id !== boton.dataset.gestionCerrarDesvio)
+  );
+  renderizarDesvios();
+  renderizarGestion();
+});
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
