@@ -135,6 +135,11 @@ summary:focus-visible {
   justify-content: space-between;
 }
 
+.menu-interno {
+  border-left-color: #344054 !important;
+  background: #f5f7f9 !important;
+}
+
 .contador {
   display: inline-flex;
   min-width: 28px;
@@ -544,6 +549,201 @@ summary:focus-visible {
 }
 
 /* ============================= */
+/* PANEL DE GESTIÓN */
+/* ============================= */
+
+.panel-acceso-demo {
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 22px;
+  border: 1px solid #dce3e8;
+  border-radius: 10px;
+  background: #f8fafb;
+}
+
+.gestion-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding: 14px;
+  border-radius: 8px;
+  background: #eef4ea;
+}
+
+.gestion-cabecera strong,
+.gestion-cabecera span {
+  display: block;
+}
+
+.btn-compacto {
+  width: auto;
+  padding: 9px 12px;
+  font-size: 13px;
+}
+
+.metricas-gestion {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.metricas-gestion article {
+  padding: 16px;
+  border: 1px solid #dce3e8;
+  border-radius: 8px;
+  background: #f8fafb;
+}
+
+.metricas-gestion span {
+  display: block;
+  min-height: 32px;
+  color: #52606d;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.metricas-gestion strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 28px;
+}
+
+.metricas-gestion .metrica-critica {
+  border-color: #f1b4af;
+  background: #fff1f0;
+}
+
+.tabs-gestion {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.tab-gestion {
+  text-align: center;
+}
+
+.tab-gestion.activo {
+  border-color: #4fa52f;
+  background: #e8f5e4;
+  color: #286515;
+}
+
+.barra-filtros {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ticket-gestion {
+  padding: 18px;
+  border: 1px solid #dce3e8;
+  border-left: 6px solid #4fa52f;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.ticket-gestion.ticket-critico {
+  border-left-color: #b42318;
+}
+
+.ticket-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ticket-cabecera h3 {
+  margin: 7px 0 0;
+}
+
+.ticket-numero {
+  color: #52606d;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.badge-prioridad {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.badge-critico {
+  background: #fee4e2;
+  color: #b42318;
+}
+
+.badge-alerta {
+  background: #fff0d5;
+  color: #8a4300;
+}
+
+.badge-menor {
+  background: #e8f5e4;
+  color: #286515;
+}
+
+.ticket-datos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+  margin-top: 12px;
+}
+
+.ticket-datos p {
+  margin: 6px 0;
+}
+
+.ticket-datos .campo-completo {
+  grid-column: 1 / -1;
+}
+
+.alerta-patio {
+  padding: 9px;
+  border-radius: 6px;
+  background: #fff8e8;
+  color: #7a3e00;
+  font-weight: 700;
+}
+
+.gestion-ticket-acciones,
+.historial-ticket {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e3e8ec;
+}
+
+.gestion-ticket-acciones summary,
+.historial-ticket summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.historial-ticket ol {
+  margin-bottom: 0;
+  padding-left: 22px;
+}
+
+.historial-ticket li {
+  margin: 10px 0;
+}
+
+.historial-ticket li span {
+  display: block;
+  color: #617180;
+  font-size: 12px;
+}
+
+/* ============================= */
 /* MAPA VISUAL D01 */
 /* ============================= */
 
@@ -851,6 +1051,26 @@ summary:focus-visible {
 
   .pasos-ticket {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .metricas-gestion,
+  .barra-filtros,
+  .ticket-datos {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-datos .campo-completo {
+    grid-column: auto;
+  }
+
+  .gestion-cabecera,
+  .ticket-cabecera {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .btn-compacto {
+    width: 100%;
   }
 
   .directorio-form-fila {
