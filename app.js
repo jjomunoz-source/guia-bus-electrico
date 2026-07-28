@@ -172,6 +172,180 @@ document.getElementById("directorio-cerrar")?.addEventListener("click", () => {
 
 iniciarDirectorio();
 
+const DESVIOS_DEMO_KEY = "stu_desvios_demo";
+const FALLAS_DEMO_KEY = "stu_fallas_demo";
+
+function leerLocal(clave) {
+  try {
+    return JSON.parse(localStorage.getItem(clave) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function guardarLocal(clave, datos) {
+  localStorage.setItem(clave, JSON.stringify(datos));
+}
+
+function escaparTexto(valor) {
+  const nodo = document.createElement("span");
+  nodo.textContent = valor;
+  return nodo.innerHTML;
+}
+
+function formatearFecha(valor) {
+  return new Intl.DateTimeFormat("es-CL", {
+    dateStyle: "short",
+    timeStyle: "short"
+  }).format(new Date(valor));
+}
+
+function obtenerDesviosVigentes() {
+  const ahora = Date.now();
+  return leerLocal(DESVIOS_DEMO_KEY).filter(desvio => new Date(desvio.fin).getTime() > ahora);
+}
+
+function renderizarDesvios() {
+  const listado = document.getElementById("desvios-listado");
+  if (!listado) return;
+
+  const desvios = obtenerDesviosVigentes();
+  const contadorMenu = document.getElementById("menu-desvios-contador");
+  const contadorRecorridos = document.getElementById("recorridos-desvios-contador");
+  const estado = document.getElementById("desvios-estado-general");
+
+  [contadorMenu, contadorRecorridos].forEach(contador => {
+    if (contador) contador.textContent = String(desvios.length);
+  });
+
+  estado.textContent = desvios.length ? `${desvios.length} vigente${desvios.length === 1 ? "" : "s"}` : "Sin desvíos";
+  estado.classList.toggle("pill-alerta", desvios.length > 0);
+  estado.classList.toggle("pill-ok", desvios.length === 0);
+
+  if (!desvios.length) {
+    listado.innerHTML = `
+      <div class="estado-vacio">
+        <span aria-hidden="true">✅</span>
+        <strong>No hay desvíos no programados vigentes</strong>
+        <p>El recorrido habitual se mantiene. Verifica nuevamente antes de iniciar tu servicio.</p>
+      </div>`;
+    return;
+  }
+
+  listado.innerHTML = desvios
+    .sort((a, b) => new Date(a.fin) - new Date(b.fin))
+    .map(desvio => `
+      <article class="tarjeta-desvio">
+        <div class="tarjeta-desvio-cabecera">
+          <span class="servicio">${escaparTexto(desvio.servicio)}</span>
+          <span class="vigencia">Hasta ${formatearFecha(desvio.fin)}</span>
+        </div>
+        <h3>${escaparTexto(desvio.sector)}</h3>
+        ${desvio.motivo ? `<p><strong>Motivo:</strong> ${escaparTexto(desvio.motivo)}</p>` : ""}
+        <p class="instruccion-desvio">${escaparTexto(desvio.instrucciones)}</p>
+        <p class="actualizacion">Publicado ${formatearFecha(desvio.creado)}</p>
+        <button type="button" class="btn-secundario" data-cerrar-desvio="${desvio.id}">
+          Finalizar desvío (demostración)
+        </button>
+      </article>`)
+    .join("");
+}
+
+document.getElementById("desvio-form")?.addEventListener("submit", evento => {
+  evento.preventDefault();
+  const inicio = document.getElementById("desvio-inicio").value;
+  const fin = document.getElementById("desvio-fin").value;
+  const mensaje = document.getElementById("desvio-mensaje");
+
+  if (new Date(fin) <= new Date(inicio)) {
+    mensaje.textContent = "La fecha de término debe ser posterior al inicio.";
+    mensaje.classList.add("error");
+    return;
+  }
+
+  const desvios = leerLocal(DESVIOS_DEMO_KEY);
+  desvios.push({
+    id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+    servicio: document.getElementById("desvio-servicio").value,
+    sector: document.getElementById("desvio-sector").value.trim(),
+    instrucciones: document.getElementById("desvio-instrucciones").value.trim(),
+    motivo: document.getElementById("desvio-motivo").value.trim(),
+    inicio,
+    fin,
+    creado: new Date().toISOString()
+  });
+  guardarLocal(DESVIOS_DEMO_KEY, desvios);
+  evento.target.reset();
+  mensaje.textContent = "Desvío de demostración publicado correctamente.";
+  mensaje.classList.remove("error");
+  renderizarDesvios();
+});
+
+document.getElementById("desvios-listado")?.addEventListener("click", evento => {
+  const boton = evento.target.closest("[data-cerrar-desvio]");
+  if (!boton) return;
+  const restantes = leerLocal(DESVIOS_DEMO_KEY)
+    .filter(desvio => desvio.id !== boton.dataset.cerrarDesvio);
+  guardarLocal(DESVIOS_DEMO_KEY, restantes);
+  renderizarDesvios();
+});
+
+document.getElementById("falla-form")?.addEventListener("submit", evento => {
+  evento.preventDefault();
+  const reportes = leerLocal(FALLAS_DEMO_KEY);
+  const correlativo = String(reportes.length + 1).padStart(4, "0");
+  const ticket = `STU-${new Date().getFullYear()}-${correlativo}`;
+  const prioridad = document.getElementById("falla-prioridad").value;
+
+  reportes.push({
+    ticket,
+    bus: document.getElementById("falla-bus").value.trim(),
+    patente: document.getElementById("falla-patente").value.trim().toUpperCase(),
+    conductor: document.getElementById("falla-conductor").value.trim(),
+    identificacion: document.getElementById("falla-id-conductor").value.trim(),
+    servicio: document.getElementById("falla-servicio").value.trim(),
+    ubicacion: document.getElementById("falla-ubicacion").value.trim(),
+    tipo: document.getElementById("falla-tipo").value,
+    prioridad,
+    descripcion: document.getElementById("falla-descripcion").value.trim(),
+    enPatio: document.getElementById("falla-en-patio").checked,
+    estado: "Reportada",
+    creado: new Date().toISOString()
+  });
+  guardarLocal(FALLAS_DEMO_KEY, reportes);
+
+  const confirmacion = document.getElementById("falla-confirmacion");
+  confirmacion.innerHTML = `
+    <strong>✅ Reporte registrado para la demostración</strong>
+    <p>Ticket <b>${ticket}</b> · Estado: <b>Reportada</b></p>
+    <p class="${prioridad === "critica" ? "texto-critico" : ""}">
+      ${prioridad === "critica"
+        ? "Bus marcado como no disponible hasta revisión autorizada."
+        : "El reporte quedaría disponible para seguimiento operativo."}
+    </p>`;
+  confirmacion.classList.remove("oculto");
+  evento.target.reset();
+  confirmacion.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+
+function prepararFechasDesvio() {
+  const inicio = document.getElementById("desvio-inicio");
+  const fin = document.getElementById("desvio-fin");
+  if (!inicio || inicio.value) return;
+
+  const ahora = new Date();
+  const despues = new Date(ahora.getTime() + 20 * 60 * 1000);
+  const local = fecha => {
+    const ajustada = new Date(fecha.getTime() - fecha.getTimezoneOffset() * 60000);
+    return ajustada.toISOString().slice(0, 16);
+  };
+  inicio.value = local(ahora);
+  fin.value = local(despues);
+}
+
+prepararFechasDesvio();
+renderizarDesvios();
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./service-worker.js").catch(error => {

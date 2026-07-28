@@ -60,7 +60,11 @@
 <section id="menu" class="menu oculto">
   <button onclick="abrir('protocolo')">📘 Protocolo Buses Eléctricos</button>
   <button onclick="abrir('directorio')">📞 Directorio Telefónico</button>
-  <button onclick="abrir('incidencias')">📝 Reporte de Incidencias</button>
+  <button class="menu-alerta" onclick="abrir('desvios-activos')">
+    🚧 Desvíos activos <span id="menu-desvios-contador" class="contador">0</span>
+  </button>
+  <button onclick="abrir('reporte-fallas')">🛠️ Reportar falla del bus</button>
+  <button onclick="abrir('incidencias')">⚠️ Protocolo de Incidencias</button>
   <button onclick="abrir('recorridos')">🗺️ Recorridos Operativos</button>
 </section>
 
@@ -191,8 +195,181 @@
 
 </section>
 
+<section id="desvios-activos" class="modulo oculto">
+  <div class="titulo-con-estado">
+    <div>
+      <p class="eyebrow">Información operativa prioritaria</p>
+      <h2>🚧 Desvíos activos</h2>
+    </div>
+    <span id="desvios-estado-general" class="pill pill-ok">Sin desvíos</span>
+  </div>
+
+  <div class="aviso-seguridad">
+    Consulta esta información antes de iniciar el servicio y siempre con el bus detenido.
+  </div>
+
+  <div id="desvios-listado" class="lista-operativa" aria-live="polite"></div>
+
+  <details class="panel-demo">
+    <summary>Vista de gestión para Despacho / Operaciones (demostración)</summary>
+    <p class="texto-secundario">
+      Esta versión permite presentar el flujo. La publicación real quedará protegida para
+      personal autorizado y almacenada en el servidor.
+    </p>
+    <form id="desvio-form" class="form-operativo">
+      <div class="campo">
+        <label for="desvio-servicio">Servicio afectado</label>
+        <select id="desvio-servicio" required>
+          <option value="">Seleccionar</option>
+          <option>D01</option><option>D02</option><option>D03</option><option>D03c</option>
+          <option>D07</option><option>D07c</option><option>D08</option><option>D09</option>
+          <option>D10</option><option>D11</option><option>D15</option><option>D18</option>
+          <option>D20</option><option>420</option><option>Varios servicios</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="desvio-sector">Sector o punto de inicio</label>
+        <input id="desvio-sector" maxlength="100" required placeholder="Ej.: Av. Grecia con Tobalaba">
+      </div>
+      <div class="campo campo-ancho">
+        <label for="desvio-instrucciones">Instrucción de desvío</label>
+        <textarea id="desvio-instrucciones" rows="4" maxlength="500" required
+          placeholder="Calles que debe utilizar el conductor y punto de retorno al recorrido"></textarea>
+      </div>
+      <div class="campo">
+        <label for="desvio-inicio">Inicio</label>
+        <input id="desvio-inicio" type="datetime-local" required>
+      </div>
+      <div class="campo">
+        <label for="desvio-fin">Vigente hasta</label>
+        <input id="desvio-fin" type="datetime-local" required>
+      </div>
+      <div class="campo campo-ancho">
+        <label for="desvio-motivo">Motivo</label>
+        <input id="desvio-motivo" maxlength="140" placeholder="Ej.: accidente, trabajos o inundación">
+      </div>
+      <button type="submit" class="btn-primario campo-ancho">Publicar desvío de demostración</button>
+    </form>
+    <p id="desvio-mensaje" class="mensaje-form" role="status" aria-live="polite"></p>
+  </details>
+
+  <br>
+  <button onclick="volver()">⬅ Volver al menú</button>
+</section>
+
+<section id="reporte-fallas" class="modulo oculto">
+  <p class="eyebrow">Registro y seguimiento</p>
+  <h2>🛠️ Reportar falla del bus</h2>
+
+  <div class="aviso-seguridad">
+    Si la falla compromete la conducción segura, detén el bus en un lugar seguro y contacta
+    inmediatamente a COF o a la jefatura correspondiente.
+  </div>
+
+  <form id="falla-form" class="form-operativo">
+    <div class="campo">
+      <label for="falla-bus">Número interno del bus</label>
+      <input id="falla-bus" inputmode="numeric" maxlength="10" required placeholder="Ej.: 1234">
+    </div>
+    <div class="campo">
+      <label for="falla-patente">Patente</label>
+      <input id="falla-patente" maxlength="8" required placeholder="Ej.: ABCD12">
+    </div>
+    <div class="campo">
+      <label for="falla-conductor">Nombre del conductor</label>
+      <input id="falla-conductor" maxlength="100" required>
+    </div>
+    <div class="campo">
+      <label for="falla-id-conductor">Identificación laboral</label>
+      <input id="falla-id-conductor" maxlength="30" required placeholder="N.º interno o código">
+    </div>
+    <div class="campo">
+      <label for="falla-servicio">Servicio / recorrido</label>
+      <input id="falla-servicio" maxlength="20" placeholder="Ej.: D01">
+    </div>
+    <div class="campo">
+      <label for="falla-ubicacion">Ubicación o patio</label>
+      <input id="falla-ubicacion" maxlength="120" required>
+    </div>
+    <div class="campo">
+      <label for="falla-tipo">Sistema afectado</label>
+      <select id="falla-tipo" required>
+        <option value="">Seleccionar</option>
+        <option>Limpiaparabrisas</option>
+        <option>Desempañador</option>
+        <option>Puertas</option>
+        <option>Frenos</option>
+        <option>Luces</option>
+        <option>Carga o batería</option>
+        <option>Alerta en tablero</option>
+        <option>Climatización automática</option>
+        <option>Daño exterior o interior</option>
+        <option>Otra falla</option>
+      </select>
+    </div>
+    <div class="campo">
+      <label for="falla-prioridad">Impacto operacional</label>
+      <select id="falla-prioridad" required>
+        <option value="">Seleccionar</option>
+        <option value="critica">Crítica: bus no debe circular</option>
+        <option value="limitante">Limitante: requiere revisión prioritaria</option>
+        <option value="menor">Menor: permite continuar según instrucción</option>
+      </select>
+    </div>
+    <div class="campo campo-ancho">
+      <label for="falla-descripcion">Descripción de la falla</label>
+      <textarea id="falla-descripcion" rows="5" maxlength="700" required
+        placeholder="Describe qué ocurre, cuándo comenzó y cualquier alerta visible"></textarea>
+    </div>
+    <div class="campo campo-ancho">
+      <label class="check-linea">
+        <input id="falla-en-patio" type="checkbox">
+        El bus fue enviado o permanece en patio
+      </label>
+    </div>
+    <div class="campo campo-ancho">
+      <label for="falla-foto">Fotografía de respaldo (opcional en la propuesta)</label>
+      <input id="falla-foto" type="file" accept="image/*" capture="environment">
+      <small>La versión final definirá el almacenamiento seguro de fotografías.</small>
+    </div>
+    <button type="submit" class="btn-primario campo-ancho">Crear reporte de demostración</button>
+  </form>
+
+  <div id="falla-confirmacion" class="confirmacion-ticket oculto" role="status" aria-live="polite"></div>
+
+  <div class="flujo-ticket" aria-label="Flujo propuesto del reporte">
+    <h3>Seguimiento propuesto</h3>
+    <div class="pasos-ticket">
+      <span class="paso-activo">1. Reportada</span>
+      <span>2. Recibida</span>
+      <span>3. En revisión</span>
+      <span>4. En reparación</span>
+      <span>5. Lista para servicio</span>
+      <span>6. Cerrada</span>
+    </div>
+    <p class="texto-secundario">
+      Una falla crítica mantendrá el bus marcado como no disponible hasta que el área autorizada
+      confirme su retorno a servicio.
+    </p>
+  </div>
+
+  <div class="destinatarios-demo">
+    <strong>Notificaciones previstas:</strong>
+    Check Bus · Operaciones · Taller
+    <small>Los correos se configurarán después de su confirmación.</small>
+  </div>
+
+  <br>
+  <button onclick="volver()">⬅ Volver al menú</button>
+</section>
+
 <section id="recorridos" class="modulo oculto">
 <h2>🗺️ Recorridos Operativos</h2>
+
+<button class="acceso-desvios" onclick="abrir('desvios-activos')">
+  🚧 Consultar desvíos activos
+  <span id="recorridos-desvios-contador" class="contador">0</span>
+</button>
 
 <div class="grid-recorridos">
 <button onclick="abrir('d01')">D01</button>

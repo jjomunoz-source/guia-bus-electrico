@@ -121,9 +121,31 @@ button:active {
 
 button:focus-visible,
 a:focus-visible,
-input:focus-visible {
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
   outline: 3px solid #1d4ed8;
   outline-offset: 3px;
+}
+
+.menu-alerta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contador {
+  display: inline-flex;
+  min-width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: #d97706;
+  color: #fff;
+  font-size: 14px;
 }
 
 /* ============================= */
@@ -261,6 +283,264 @@ input:focus-visible {
 
 .desvio ul {
   margin: 8px 0 0;
+}
+
+/* ============================= */
+/* GESTIÓN OPERATIVA */
+/* ============================= */
+
+.titulo-con-estado,
+.tarjeta-desvio-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: #52606d;
+  font-size: 13px !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pill {
+  flex: 0 0 auto;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.pill-ok {
+  background: #e8f5e4;
+  color: #286515;
+}
+
+.pill-alerta {
+  background: #fff0d5;
+  color: #8a4300;
+}
+
+.aviso-seguridad {
+  margin: 14px 0 18px;
+  padding: 14px 16px;
+  border-left: 5px solid #d97706;
+  border-radius: 6px;
+  background: #fff8e8;
+  line-height: 1.5;
+}
+
+.lista-operativa {
+  display: grid;
+  gap: 14px;
+}
+
+.estado-vacio,
+.tarjeta-desvio,
+.confirmacion-ticket,
+.destinatarios-demo {
+  padding: 18px;
+  border: 1px solid #dce3e8;
+  border-radius: 8px;
+  background: #f8fafb;
+}
+
+.estado-vacio {
+  text-align: center;
+}
+
+.estado-vacio > span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 30px;
+}
+
+.estado-vacio p {
+  margin-bottom: 0;
+  color: #52606d;
+}
+
+.tarjeta-desvio {
+  border-left: 6px solid #d97706;
+  background: #fffaf0;
+}
+
+.tarjeta-desvio h3 {
+  margin: 14px 0 8px;
+}
+
+.servicio {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #1f2933;
+  color: #fff;
+  font-weight: 800;
+}
+
+.vigencia,
+.actualizacion,
+.texto-secundario,
+.campo small,
+.destinatarios-demo small {
+  color: #617180;
+  font-size: 13px;
+}
+
+.instruccion-desvio {
+  padding: 12px;
+  border-radius: 6px;
+  background: #fff;
+  white-space: pre-line;
+}
+
+.panel-demo {
+  margin-top: 22px;
+  padding: 15px;
+  border: 1px dashed #9aa6b2;
+  border-radius: 8px;
+}
+
+.panel-demo summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.form-operativo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.campo-ancho {
+  grid-column: 1 / -1;
+}
+
+.campo label {
+  font-weight: 700;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #b8c2cc;
+  border-radius: 6px;
+  background: #fff;
+  color: #1f2933;
+  font-size: 16px;
+}
+
+.campo textarea {
+  resize: vertical;
+}
+
+.check-linea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.check-linea input {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-primario {
+  border-color: #3f8f25;
+  background: #4fa52f;
+  color: #fff;
+  text-align: center;
+}
+
+.btn-primario:hover {
+  background: #3f8f25;
+  color: #fff;
+}
+
+.btn-secundario {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: transparent;
+  text-align: center;
+}
+
+.mensaje-form {
+  min-height: 22px;
+  color: #286515;
+  font-weight: 700;
+}
+
+.mensaje-form.error,
+.texto-critico {
+  color: #b42318;
+}
+
+.confirmacion-ticket {
+  margin-top: 20px;
+  border-left: 6px solid #4fa52f;
+  background: #f1f9ef;
+}
+
+.confirmacion-ticket p:last-child {
+  margin-bottom: 0;
+}
+
+.destinatarios-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 16px;
+}
+
+.flujo-ticket {
+  margin-top: 20px;
+}
+
+.flujo-ticket h3 {
+  margin-top: 0;
+}
+
+.pasos-ticket {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.pasos-ticket span {
+  padding: 10px;
+  border: 1px solid #dce3e8;
+  border-radius: 6px;
+  background: #f8fafb;
+  color: #52606d;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pasos-ticket .paso-activo {
+  border-color: #4fa52f;
+  background: #e8f5e4;
+  color: #286515;
+}
+
+.acceso-desvios {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  border: 2px solid #d97706;
+  background: #fff8e8;
 }
 
 /* ============================= */
@@ -556,6 +836,23 @@ input:focus-visible {
 }
 
 @media (max-width: 600px) {
+  .form-operativo {
+    grid-template-columns: 1fr;
+  }
+
+  .campo-ancho {
+    grid-column: auto;
+  }
+
+  .titulo-con-estado,
+  .tarjeta-desvio-cabecera {
+    flex-direction: column;
+  }
+
+  .pasos-ticket {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .directorio-form-fila {
     grid-template-columns: 1fr;
   }
