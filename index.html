@@ -8,6 +8,7 @@
 
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
+<script src="directory-config.js"></script>
 <script src="app.js" defer></script>
 </head>
 
@@ -122,11 +123,6 @@
 <section id="directorio" class="modulo oculto">
 <h2>📞 Contactos operativos</h2>
 
-<div class="advertencia-legal">
-  🔒 <strong>Protección de datos internos</strong>
-  <p>Los teléfonos personales y la nómina de turnos no se publican en esta guía. Consulta el directorio vigente mediante los canales internos oficiales de STU.</p>
-</div>
-
 <h3>Emergencias públicas</h3>
 <div class="contacto">
   <p>Ambulancia – <a href="tel:131">131</a></p>
@@ -134,8 +130,34 @@
   <p>Carabineros – <a href="tel:133">133</a></p>
 </div>
 
-<h3>Coordinación operacional</h3>
-<p>Comunícate con COF o con la jefatura correspondiente utilizando el canal interno vigente informado por STU.</p>
+<div id="directorio-acceso" class="directorio-acceso">
+  <h3>🔒 Directorio interno STU</h3>
+  <p>Ingresa el PIN operativo para consultar COF, jefaturas e inspectores.</p>
+  <form id="directorio-form">
+    <label for="directorio-pin">PIN de acceso</label>
+    <div class="directorio-form-fila">
+      <input
+        id="directorio-pin"
+        name="pin"
+        type="password"
+        inputmode="numeric"
+        autocomplete="one-time-code"
+        minlength="6"
+        required
+      >
+      <button type="submit">Abrir directorio</button>
+    </div>
+  </form>
+  <p id="directorio-mensaje" class="directorio-mensaje" role="status" aria-live="polite"></p>
+</div>
+
+<div id="directorio-contenido" class="oculto" aria-live="polite">
+  <div class="directorio-encabezado">
+    <p><strong>Directorio interno autorizado</strong></p>
+    <button id="directorio-cerrar" type="button">Cerrar acceso</button>
+  </div>
+  <div id="directorio-listado"></div>
+</div>
 
 <br>
 <button onclick="volver()">⬅ Volver al menú</button>
