@@ -1,11 +1,13 @@
 {
-  "name": "Guía Bus Eléctrico",
-  "short_name": "Bus Eléctrico",
-  "description": "Guía práctica para el uso correcto y eficiente de buses eléctricos",
-  "start_url": "./index.html",
+  "name": "Guía Operativa – Buses Eléctricos STU",
+  "short_name": "Guía STU",
+  "description": "Guía operativa para conductores de buses eléctricos STU",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0a0a0a",
+  "theme_color": "#4fa52f",
   "orientation": "portrait",
   "icons": [
     {
