@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#4fa52f">
 <title>Guía Operativa – STU</title>
 
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
 </head>
 
 <body>
@@ -45,7 +47,7 @@
   <button onclick="irA('recorridos')">🧭 Revisar recorrido y desvíos</button>
   <span class="estado" id="ok-recorrido">Pendiente</span>
 </div>
-    <label><input type="checkbox"> ❄️ Climatización ajustada de forma eficiente</label>
+    <label><input type="checkbox"> ❄️ Climatización en modo automático, sin intervención manual</label>
     <div class="item-check">
   <button onclick="irA('protocolo')">🔋 Revisar conducción y regeneración</button>
   <span class="estado" id="ok-regen">Pendiente</span>
@@ -118,55 +120,22 @@
 </section>
 
 <section id="directorio" class="modulo oculto">
-<h2>📞 Directorio Operativo STU</h2>
-  
-<h3>Emergencias y COF</h3>
+<h2>📞 Contactos operativos</h2>
 
+<div class="advertencia-legal">
+  🔒 <strong>Protección de datos internos</strong>
+  <p>Los teléfonos personales y la nómina de turnos no se publican en esta guía. Consulta el directorio vigente mediante los canales internos oficiales de STU.</p>
+</div>
+
+<h3>Emergencias públicas</h3>
 <div class="contacto">
-  <strong>Emergencias</strong>
   <p>Ambulancia – <a href="tel:131">131</a></p>
   <p>Bomberos – <a href="tel:132">132</a></p>
   <p>Carabineros – <a href="tel:133">133</a></p>
 </div>
 
-<div class="contacto">
-  <strong>COF</strong>
-  <p>Centro de Operaciones de Flota – <a href="tel:+56950048512">950048512</a></p>
-</div>
-<h3>Turno AM</h3>
-<p><strong>Jefes de Operaciones</strong></p>
-<p>José Bustamante – <a href="tel:+56968341709">968341709</a></p>
-<p>Gabriel Cornejo – <a href="tel:+56977964669">977964669</a></p>
-
-<p><strong>Jefes de Servicio</strong></p>
-<p>Luis Molina – <a href="tel:+56952089381">952089381</a></p>
-<p>Rodrigo Serrano – <a href="tel:+56946140880">946140880</a></p>
-<p>Claudio Paz – <a href="tel:+56964332813">964332813</a></p>
-
-<p><strong>Inspectores</strong></p>
-<p>Jackson Arias – <a href="tel:+56941900512">941900512</a></p>
-<p>Néstor Espinoza – <a href="tel:+56933449509">933449509</a></p>
-<p>Jeanette Rebolledo – <a href="tel:+56986254528">986254528</a></p>
-<p>Kathia Pacheco – <a href="tel:+56954399799">954399799</a></p>
-<p>Ángeles Azócar – <a href="tel:+56999391910">999391910</a></p>
-
-<h3>Turno PM</h3>
-<p><strong>Jefes de Operaciones</strong></p>
-<p>Cristopher Alvear – <a href="tel:+56962809771">962809771</a></p>
-
-<p><strong>Jefes de Servicio</strong></p>
-<p>Matías Bustamante – <a href="tel:+56966866758">966866758</a></p>
-<p>David Ramírez – <a href="tel:+56921948354">921948354</a></p>
-
-<p><strong>Inspectores</strong></p>
-<p>Carlos Sáez – <a href="tel:+56962296645">962296645</a></p>
-<p>Rodolfo Cornejo – <a href="tel:+56985057590">985057590</a></p>
-<p>Isabel Sánchez – <a href="tel:+56985450748">985450748</a></p>
-
-<h3>Turno Nocturno</h3>
-<p>Paola Arredondo – <a href="tel:+56926843321">926843321</a></p>
-<p>Jorge Monsalve – <a href="tel:+56949317666">949317666</a></p>
-<p>Lissete Alarcón – <a href="tel:+56937022016">937022016</a></p>
+<h3>Coordinación operacional</h3>
+<p>Comunícate con COF o con la jefatura correspondiente utilizando el canal interno vigente informado por STU.</p>
 
 <br>
 <button onclick="volver()">⬅ Volver al menú</button>
@@ -185,7 +154,7 @@
     <li>🚑 Ambulancia: <a href="tel:131">131</a></li>
     <li>🚒 Bomberos: <a href="tel:132">132</a></li>
     <li>🚓 Carabineros: <a href="tel:133">133</a></li>
-    <li>📡 COF: <a href="tel:+56950048512">950048512</a></li>
+    <li>📡 COF: utilizar el canal interno vigente</li>
     <li>📞 Jefatura correspondiente</li>
   </ul>
 
@@ -444,38 +413,6 @@
 </section>
 
 </main>
-
-<script>
-function abrir(id){
-  document.getElementById('menu').classList.add('oculto');
-  document.querySelectorAll('.modulo').forEach(m => m.classList.add('oculto'));
-  document.getElementById(id).classList.remove('oculto');
-  window.scrollTo(0,0);
-}
-
-function volver(){
-  document.querySelectorAll('.modulo').forEach(m => m.classList.add('oculto'));
-  document.querySelectorAll('.submodulo').forEach(s => s.classList.add('oculto'));
-  document.getElementById('menu').classList.remove('oculto');
-  window.scrollTo(0,0);
-}
-
-function mostrarSub(id){
-  document.querySelectorAll('.submodulo').forEach(s => s.classList.add('oculto'));
-  document.getElementById(id).classList.remove('oculto');
-}
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./service-worker.js");
-}
-
-function entrarApp() {
-  document.getElementById('pre-salida').classList.add('oculto');
-  document.getElementById('menu').classList.remove('oculto');
-  window.scrollTo(0,0);
-}
-</script>
-</script>
 
 </body>
 </html>
