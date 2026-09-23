@@ -57,8 +57,6 @@ function irA(modulo) {
   abrir(modulo);
 }
 
-const DIRECTORIO_TOKEN_KEY = "stu_directorio_token";
-
 function obtenerDirectorioApi() {
   return window.STU_DIRECTORY_API || "";
 }
@@ -103,21 +101,19 @@ function renderizarDirectorio(grupos) {
     listado.appendChild(seccion);
   });
 
-  document.getElementById("directorio-acceso").classList.add("oculto");
+  document.getElementById("directorio-estado").classList.add("oculto");
   document.getElementById("directorio-contenido").classList.remove("oculto");
 }
 
-async function solicitarDirectorio(credencial) {
+async function solicitarDirectorio() {
   const api = obtenerDirectorioApi();
   if (!api || api.includes("REEMPLAZAR")) {
-    throw new Error("El directorio protegido aún no está configurado.");
+    throw new Error("El directorio aún no está configurado.");
   }
 
   const respuesta = await fetch(api, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    cache: "no-store",
-    body: JSON.stringify(credencial)
+    method: "GET",
+    cache: "no-store"
   });
 
   const datos = await respuesta.json().catch(() => ({}));
@@ -128,47 +124,22 @@ async function solicitarDirectorio(credencial) {
 }
 
 async function iniciarDirectorio() {
-  const token = localStorage.getItem(DIRECTORIO_TOKEN_KEY);
-  if (!token) {
-    return;
-  }
-
-  try {
-    const datos = await solicitarDirectorio({ token });
-    renderizarDirectorio(datos.grupos);
-  } catch {
-    localStorage.removeItem(DIRECTORIO_TOKEN_KEY);
-  }
-}
-
-document.getElementById("directorio-form")?.addEventListener("submit", async evento => {
-  evento.preventDefault();
-  const entrada = document.getElementById("directorio-pin");
-  const boton = evento.submitter;
-  const pin = entrada.value.trim();
-
+  const boton = document.getElementById("directorio-reintentar");
   boton.disabled = true;
-  mostrarMensajeDirectorio("Verificando acceso…");
+  mostrarMensajeDirectorio("Cargando contactos…");
 
   try {
-    const datos = await solicitarDirectorio({ pin });
-    localStorage.setItem(DIRECTORIO_TOKEN_KEY, datos.token);
-    entrada.value = "";
-    mostrarMensajeDirectorio("");
+    const datos = await solicitarDirectorio();
     renderizarDirectorio(datos.grupos);
   } catch (error) {
     mostrarMensajeDirectorio(error.message, true);
   } finally {
     boton.disabled = false;
   }
-});
+}
 
-document.getElementById("directorio-cerrar")?.addEventListener("click", () => {
-  localStorage.removeItem(DIRECTORIO_TOKEN_KEY);
-  document.getElementById("directorio-contenido").classList.add("oculto");
-  document.getElementById("directorio-acceso").classList.remove("oculto");
-  mostrarMensajeDirectorio("Acceso cerrado.");
-});
+localStorage.removeItem("stu_directorio_token");
+document.getElementById("directorio-reintentar")?.addEventListener("click", iniciarDirectorio);
 
 iniciarDirectorio();
 
