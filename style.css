@@ -218,6 +218,46 @@ summary:focus-visible {
 /* RECORRIDOS */
 /* ============================= */
 
+.alerta-horario-medicion {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 18px 0;
+  padding: 18px;
+  color: #5b140d;
+  background: #fff2ef;
+  border: 2px solid #d93025;
+  border-left-width: 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(217, 48, 37, 0.14);
+}
+
+.alerta-horario-medicion__icono {
+  flex: 0 0 auto;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.alerta-horario-medicion h3 {
+  margin: 0 0 8px;
+  color: #a32017;
+  font-size: 19px;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.alerta-horario-medicion p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.alerta-horario-medicion__consecuencia {
+  margin-top: 10px !important;
+  padding-top: 10px;
+  border-top: 1px solid rgba(163, 32, 23, 0.25);
+  font-weight: 800;
+}
+
 .grid-recorridos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
