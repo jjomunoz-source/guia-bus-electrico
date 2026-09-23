@@ -4,4 +4,3 @@ compatibility_date = "2026-07-28"
 
 [vars]
 ALLOWED_ORIGIN = "https://jjomunoz-source.github.io"
-TOKEN_TTL_SECONDS = "604800"
