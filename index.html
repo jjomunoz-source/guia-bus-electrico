@@ -135,31 +135,16 @@
   <p>Carabineros – <a href="tel:133">133</a></p>
 </div>
 
-<div id="directorio-acceso" class="directorio-acceso">
-  <h3>🔒 Directorio interno STU</h3>
-  <p>Ingresa el PIN operativo para consultar COF, jefaturas e inspectores.</p>
-  <form id="directorio-form">
-    <label for="directorio-pin">PIN de acceso</label>
-    <div class="directorio-form-fila">
-      <input
-        id="directorio-pin"
-        name="pin"
-        type="password"
-        inputmode="numeric"
-        autocomplete="one-time-code"
-        minlength="6"
-        required
-      >
-      <button type="submit">Abrir directorio</button>
-    </div>
-  </form>
-  <p id="directorio-mensaje" class="directorio-mensaje" role="status" aria-live="polite"></p>
+<div id="directorio-estado" class="directorio-acceso">
+  <h3>📋 Directorio operativo STU</h3>
+  <p>Los contactos se cargan automáticamente desde el directorio vigente.</p>
+  <button id="directorio-reintentar" type="button">Actualizar directorio</button>
+  <p id="directorio-mensaje" class="directorio-mensaje" role="status" aria-live="polite">Cargando contactos…</p>
 </div>
 
 <div id="directorio-contenido" class="oculto" aria-live="polite">
   <div class="directorio-encabezado">
-    <p><strong>Directorio interno autorizado</strong></p>
-    <button id="directorio-cerrar" type="button">Cerrar acceso</button>
+    <p><strong>Directorio operativo actualizado</strong></p>
   </div>
   <div id="directorio-listado"></div>
 </div>
