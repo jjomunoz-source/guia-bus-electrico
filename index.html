@@ -457,6 +457,21 @@
 <section id="recorridos" class="modulo oculto">
 <h2>🗺️ Recorridos Operativos</h2>
 
+<div class="alerta-horario-medicion" role="alert" aria-labelledby="titulo-horario-medicion">
+  <div class="alerta-horario-medicion__icono" aria-hidden="true">⚠️</div>
+  <div>
+    <h3 id="titulo-horario-medicion">Horario de medición: cumplimiento obligatorio</h3>
+    <p>
+      Respeta la <strong>hora programada de salida desde el terminal</strong>.
+      El bus debe estar en el <strong>paradero de marcación 3 minutos después</strong>
+      de la salida.
+    </p>
+    <p class="alerta-horario-medicion__consecuencia">
+      El incumplimiento de este horario puede ser causal de amonestación.
+    </p>
+  </div>
+</div>
+
 <button class="acceso-desvios" onclick="abrir('desvios-activos')">
   🚧 Consultar desvíos activos
   <span id="recorridos-desvios-contador" class="contador">0</span>
