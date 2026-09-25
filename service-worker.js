@@ -1,4 +1,4 @@
-const CACHE_NAME = "guia-stu-v25";
+const CACHE_NAME = "guia-stu-v26";
 
 const FILES_TO_CACHE = [
   "./",
@@ -8,6 +8,7 @@ const FILES_TO_CACHE = [
   "./app.js",
   "./manifest.json",
   "./logo-stu.png",
+  "./apple-touch-icon.png",
   "./icon-192.png",
   "./icon-512.png"
 ];
