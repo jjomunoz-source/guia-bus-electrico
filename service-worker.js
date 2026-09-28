@@ -1,4 +1,4 @@
-const CACHE_NAME = "guia-stu-v28";
+const CACHE_NAME = "guia-stu-v29";
 
 const FILES_TO_CACHE = [
   "./",
