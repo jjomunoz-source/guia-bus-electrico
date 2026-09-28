@@ -258,6 +258,66 @@ summary:focus-visible {
   font-weight: 800;
 }
 
+.paradero-medicion {
+  margin: 14px 0 20px;
+  padding: 16px;
+  background: #f2f8ef;
+  border: 2px solid #4fa52f;
+  border-left-width: 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(79, 165, 47, 0.13);
+}
+
+.paradero-medicion h3 {
+  margin: 0 0 10px;
+  color: #245c17;
+  font-size: 18px;
+}
+
+.regla-medicion {
+  margin: 0 0 13px;
+  padding: 10px 12px;
+  color: #702018;
+  background: #fff1ed;
+  border-radius: 7px;
+  line-height: 1.45;
+}
+
+.paradero-medicion__fila {
+  display: grid;
+  grid-template-columns: 80px 92px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid #c7ddbf;
+}
+
+.paradero-medicion__fila span,
+.paradero-medicion__fila strong {
+  display: inline-block;
+  text-align: center;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.paradero-medicion__fila span {
+  padding: 5px 8px;
+  color: #fff;
+  background: #245c17;
+}
+
+.paradero-medicion__fila strong {
+  padding: 5px 8px;
+  color: #245c17;
+  background: #dcefd5;
+}
+
+.paradero-medicion__fila p {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
 .grid-recorridos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
@@ -1076,6 +1136,15 @@ summary:focus-visible {
 }
 
 @media (max-width: 600px) {
+  .paradero-medicion__fila {
+    grid-template-columns: 78px 88px;
+  }
+
+  .paradero-medicion__fila p {
+    grid-column: 1 / -1;
+    padding: 0 4px 5px;
+  }
+
   .form-operativo {
     grid-template-columns: 1fr;
   }
