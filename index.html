@@ -200,12 +200,26 @@
   <div id="desvios-listado" class="lista-operativa" aria-live="polite"></div>
 
   <details class="panel-demo">
-    <summary>Vista de gestión para Despacho / Operaciones (demostración)</summary>
-    <p class="texto-secundario">
-      Esta versión permite presentar el flujo. La publicación real quedará protegida para
-      personal autorizado y almacenada en el servidor.
-    </p>
-    <form id="desvio-form" class="form-operativo">
+    <summary>🔐 Acceso Despacho / Operaciones</summary>
+    <div id="desvio-login-panel">
+      <p class="texto-secundario">Ingresa el PIN operativo para publicar o finalizar desvíos.</p>
+      <form id="desvio-login-form" class="form-operativo">
+        <div class="campo">
+          <label for="desvio-admin-pin">PIN administrativo</label>
+          <input id="desvio-admin-pin" type="password" inputmode="numeric"
+            autocomplete="off" maxlength="12" required>
+        </div>
+        <button type="submit" class="btn-primario">Ingresar</button>
+      </form>
+      <p id="desvio-login-mensaje" class="mensaje-form" role="status" aria-live="polite"></p>
+    </div>
+
+    <div id="desvio-admin-panel" class="oculto">
+      <div class="titulo-con-estado">
+        <p><strong>Sesión administrativa activa</strong></p>
+        <button id="desvio-cerrar-sesion" type="button" class="btn-secundario">Cerrar sesión</button>
+      </div>
+      <form id="desvio-form" class="form-operativo">
       <div class="campo">
         <label for="desvio-servicio">Servicio afectado</label>
         <select id="desvio-servicio" required>
@@ -237,9 +251,10 @@
         <label for="desvio-motivo">Motivo</label>
         <input id="desvio-motivo" maxlength="140" placeholder="Ej.: accidente, trabajos o inundación">
       </div>
-      <button type="submit" class="btn-primario campo-ancho">Publicar desvío de demostración</button>
-    </form>
-    <p id="desvio-mensaje" class="mensaje-form" role="status" aria-live="polite"></p>
+        <button type="submit" class="btn-primario campo-ancho">Publicar desvío</button>
+      </form>
+      <p id="desvio-mensaje" class="mensaje-form" role="status" aria-live="polite"></p>
+    </div>
   </details>
 
   <br>
