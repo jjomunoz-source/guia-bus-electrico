@@ -15,6 +15,10 @@ function abrir(id) {
   document.getElementById("menu").classList.add("oculto");
   ocultarModulos();
   destino.classList.remove("oculto");
+  if (["d01", "d02", "d03", "d03c", "d07", "d07c", "d08", "d09", "d10", "d11", "d15", "d18", "d20", "d420"].includes(id)) {
+    const estadoRecorrido = document.getElementById("ok-recorrido");
+    if (estadoRecorrido) estadoRecorrido.textContent = "Revisado";
+  }
   window.scrollTo(0, 0);
 }
 
