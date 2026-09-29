@@ -44,11 +44,14 @@
     <label><input type="checkbox"> 💡 Sin alertas críticas en tablero</label>
     <label><input type="checkbox"> 🚪 Puertas verificadas</label>
     
-    <div class="item-check">
-  <button onclick="irA('recorridos')">🧭 Revisar recorrido y desvíos</button>
-  <span class="estado" id="ok-recorrido">Pendiente</span>
-</div>
-    <label><input type="checkbox"> ❄️ Climatización en modo automático, sin intervención manual</label>
+    <div class="revision-recorrido-destacada">
+      <div class="revision-recorrido-destacada__cabecera">
+        <h3>🧭 Revisa tu recorrido antes de salir</h3>
+        <span class="estado" id="ok-recorrido">Pendiente</span>
+      </div>
+      <p>Confirma el trayecto, los desvíos operacionales y el paradero de marcación. Recuerda: debes llegar a los 3 minutos, nunca antes.</p>
+      <button type="button" onclick="irA('recorridos')">Revisar mi recorrido</button>
+    </div>
     <div class="item-check">
   <button onclick="irA('protocolo')">🔋 Revisar conducción y regeneración</button>
   <span class="estado" id="ok-regen">Pendiente</span>
