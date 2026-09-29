@@ -147,8 +147,9 @@ document.getElementById("directorio-reintentar")?.addEventListener("click", inic
 
 iniciarDirectorio();
 
-const DESVIOS_DEMO_KEY = "stu_desvios_demo";
 const FALLAS_DEMO_KEY = "stu_fallas_demo";
+let desviosActivos = [];
+let desvioAdminPin = "";
 
 function leerLocal(clave) {
   try {
@@ -175,9 +176,36 @@ function formatearFecha(valor) {
   }).format(new Date(valor));
 }
 
+function obtenerDesviosApi() {
+  return window.STU_DESVIOS_API || "";
+}
+
 function obtenerDesviosVigentes() {
   const ahora = Date.now();
-  return leerLocal(DESVIOS_DEMO_KEY).filter(desvio => new Date(desvio.fin).getTime() > ahora);
+  return desviosActivos.filter(desvio => new Date(desvio.fin).getTime() > ahora);
+}
+
+async function solicitarDesvios() {
+  const api = obtenerDesviosApi();
+  if (!api) throw new Error("El módulo de desvíos aún no está configurado.");
+  const respuesta = await fetch(api, { cache: "no-store" });
+  const datos = await respuesta.json().catch(() => ({}));
+  if (!respuesta.ok) throw new Error(datos.error || "No fue posible consultar los desvíos.");
+  desviosActivos = Array.isArray(datos.desvios) ? datos.desvios : [];
+}
+
+async function actualizarDesvios() {
+  try {
+    await solicitarDesvios();
+    renderizarDesvios();
+    renderizarDesviosGestion();
+    renderizarMetricasGestion();
+  } catch (error) {
+    const listado = document.getElementById("desvios-listado");
+    if (listado) {
+      listado.innerHTML = `<div class="estado-vacio"><strong>No fue posible actualizar los desvíos</strong><p>${escaparTexto(error.message)}</p></div>`;
+    }
+  }
 }
 
 function renderizarDesvios() {
@@ -219,14 +247,50 @@ function renderizarDesvios() {
         ${desvio.motivo ? `<p><strong>Motivo:</strong> ${escaparTexto(desvio.motivo)}</p>` : ""}
         <p class="instruccion-desvio">${escaparTexto(desvio.instrucciones)}</p>
         <p class="actualizacion">Publicado ${formatearFecha(desvio.creado)}</p>
-        <button type="button" class="btn-secundario" data-cerrar-desvio="${desvio.id}">
-          Finalizar desvío (demostración)
-        </button>
+        ${desvioAdminPin ? `<button type="button" class="btn-secundario" data-cerrar-desvio="${desvio.id}">Finalizar desvío</button>` : ""}
       </article>`)
     .join("");
 }
 
-document.getElementById("desvio-form")?.addEventListener("submit", evento => {
+async function autenticarDesvios(pin) {
+  const respuesta = await fetch(`${obtenerDesviosApi()}/login`, {
+    method: "POST",
+    headers: { "X-Admin-Pin": pin }
+  });
+  const datos = await respuesta.json().catch(() => ({}));
+  if (!respuesta.ok) throw new Error(datos.error || "No fue posible validar el PIN.");
+}
+
+function mostrarSesionDesvios(activa) {
+  document.getElementById("desvio-login-panel")?.classList.toggle("oculto", activa);
+  document.getElementById("desvio-admin-panel")?.classList.toggle("oculto", !activa);
+  renderizarDesvios();
+}
+
+document.getElementById("desvio-login-form")?.addEventListener("submit", async evento => {
+  evento.preventDefault();
+  const mensaje = document.getElementById("desvio-login-mensaje");
+  const pin = document.getElementById("desvio-admin-pin").value.trim();
+  mensaje.textContent = "Validando…";
+  mensaje.classList.remove("error");
+  try {
+    await autenticarDesvios(pin);
+    desvioAdminPin = pin;
+    evento.target.reset();
+    mensaje.textContent = "";
+    mostrarSesionDesvios(true);
+  } catch (error) {
+    mensaje.textContent = error.message;
+    mensaje.classList.add("error");
+  }
+});
+
+document.getElementById("desvio-cerrar-sesion")?.addEventListener("click", () => {
+  desvioAdminPin = "";
+  mostrarSesionDesvios(false);
+});
+
+document.getElementById("desvio-form")?.addEventListener("submit", async evento => {
   evento.preventDefault();
   const inicio = document.getElementById("desvio-inicio").value;
   const fin = document.getElementById("desvio-fin").value;
@@ -238,31 +302,52 @@ document.getElementById("desvio-form")?.addEventListener("submit", evento => {
     return;
   }
 
-  const desvios = leerLocal(DESVIOS_DEMO_KEY);
-  desvios.push({
-    id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+  const cuerpo = {
     servicio: document.getElementById("desvio-servicio").value,
     sector: document.getElementById("desvio-sector").value.trim(),
     instrucciones: document.getElementById("desvio-instrucciones").value.trim(),
     motivo: document.getElementById("desvio-motivo").value.trim(),
     inicio,
-    fin,
-    creado: new Date().toISOString()
-  });
-  guardarLocal(DESVIOS_DEMO_KEY, desvios);
-  evento.target.reset();
-  mensaje.textContent = "Desvío de demostración publicado correctamente.";
-  mensaje.classList.remove("error");
-  renderizarDesvios();
+    fin
+  };
+
+  try {
+    const respuesta = await fetch(obtenerDesviosApi(), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Admin-Pin": desvioAdminPin },
+      body: JSON.stringify(cuerpo)
+    });
+    const datos = await respuesta.json().catch(() => ({}));
+    if (!respuesta.ok) throw new Error(datos.error || "No fue posible publicar el desvío.");
+    evento.target.reset();
+    prepararFechasDesvio();
+    mensaje.textContent = "Desvío publicado correctamente para todos los conductores.";
+    mensaje.classList.remove("error");
+    await actualizarDesvios();
+  } catch (error) {
+    mensaje.textContent = error.message;
+    mensaje.classList.add("error");
+    if (/autorizado|PIN/i.test(error.message)) {
+      desvioAdminPin = "";
+      mostrarSesionDesvios(false);
+    }
+  }
 });
 
-document.getElementById("desvios-listado")?.addEventListener("click", evento => {
+document.getElementById("desvios-listado")?.addEventListener("click", async evento => {
   const boton = evento.target.closest("[data-cerrar-desvio]");
   if (!boton) return;
-  const restantes = leerLocal(DESVIOS_DEMO_KEY)
-    .filter(desvio => desvio.id !== boton.dataset.cerrarDesvio);
-  guardarLocal(DESVIOS_DEMO_KEY, restantes);
-  renderizarDesvios();
+  try {
+    const respuesta = await fetch(`${obtenerDesviosApi()}/${encodeURIComponent(boton.dataset.cerrarDesvio)}`, {
+      method: "DELETE",
+      headers: { "X-Admin-Pin": desvioAdminPin }
+    });
+    const datos = await respuesta.json().catch(() => ({}));
+    if (!respuesta.ok) throw new Error(datos.error || "No fue posible finalizar el desvío.");
+    await actualizarDesvios();
+  } catch (error) {
+    alert(error.message);
+  }
 });
 
 document.getElementById("falla-form")?.addEventListener("submit", evento => {
@@ -325,7 +410,11 @@ function prepararFechasDesvio() {
 }
 
 prepararFechasDesvio();
-renderizarDesvios();
+actualizarDesvios();
+window.setInterval(actualizarDesvios, 60_000);
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") actualizarDesvios();
+});
 
 const ESTADOS_TICKET = [
   "Reportada",
@@ -484,8 +573,8 @@ function renderizarDesviosGestion() {
       </div>
       <h3>${escaparTexto(desvio.sector)}</h3>
       <p>${escaparTexto(desvio.instrucciones)}</p>
-      <button type="button" class="btn-secundario"
-        data-gestion-cerrar-desvio="${desvio.id}">Finalizar desvío</button>
+      ${desvioAdminPin ? `<button type="button" class="btn-secundario"
+        data-gestion-cerrar-desvio="${desvio.id}">Finalizar desvío</button>` : ""}
     </article>`).join("");
 }
 
@@ -579,15 +668,21 @@ document.getElementById("gestion-lista-tickets")?.addEventListener("click", even
   renderizarGestion();
 });
 
-document.getElementById("gestion-lista-desvios")?.addEventListener("click", evento => {
+document.getElementById("gestion-lista-desvios")?.addEventListener("click", async evento => {
   const boton = evento.target.closest("[data-gestion-cerrar-desvio]");
   if (!boton) return;
-  guardarLocal(
-    DESVIOS_DEMO_KEY,
-    leerLocal(DESVIOS_DEMO_KEY).filter(desvio => desvio.id !== boton.dataset.gestionCerrarDesvio)
-  );
-  renderizarDesvios();
-  renderizarGestion();
+  try {
+    const respuesta = await fetch(`${obtenerDesviosApi()}/${encodeURIComponent(boton.dataset.gestionCerrarDesvio)}`, {
+      method: "DELETE",
+      headers: { "X-Admin-Pin": desvioAdminPin }
+    });
+    const datos = await respuesta.json().catch(() => ({}));
+    if (!respuesta.ok) throw new Error(datos.error || "No fue posible finalizar el desvío.");
+    await actualizarDesvios();
+    renderizarGestion();
+  } catch (error) {
+    alert(error.message);
+  }
 });
 
 if ("serviceWorker" in navigator) {
