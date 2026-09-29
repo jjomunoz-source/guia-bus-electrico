@@ -31,6 +31,31 @@ function pinValido(request, env) {
   return Boolean(env.DESVIOS_ADMIN_PIN && recibido === env.DESVIOS_ADMIN_PIN);
 }
 
+function claveImagen(id) {
+  return `desvios/${id}/mapa`;
+}
+
+function tipoImagenValido(tipo) {
+  return ["image/jpeg", "image/png", "image/webp"].includes(tipo);
+}
+
+async function responderImagenDesvio(env, origen, url) {
+  if (!env.DESVIOS_IMAGES) {
+    return respuestaJson({ error: "Almacenamiento de imágenes no configurado." }, 503, origen);
+  }
+
+  const partes = url.pathname.split("/").filter(Boolean);
+  const objeto = await env.DESVIOS_IMAGES.get(claveImagen(partes[1] || ""));
+  if (!objeto) return respuestaJson({ error: "Imagen no encontrada." }, 404, origen);
+
+  const headers = new Headers(encabezadosCors(origen));
+  objeto.writeHttpMetadata(headers);
+  headers.set("Cache-Control", "public, max-age=3600");
+  headers.set("ETag", objeto.httpEtag);
+  headers.set("X-Content-Type-Options", "nosniff");
+  return new Response(objeto.body, { headers });
+}
+
 async function leerDesvios(env) {
   const datos = await env.DESVIOS_KV.get(DESVIOS_KEY, "json");
   return Array.isArray(datos) ? datos : [];
@@ -82,8 +107,15 @@ async function responderDesvios(request, env, origen, url) {
 
   if (request.method === "POST" && url.pathname === "/desvios") {
     let cuerpo;
+    let imagen = null;
     try {
-      cuerpo = await request.json();
+      if ((request.headers.get("Content-Type") || "").includes("multipart/form-data")) {
+        const formulario = await request.formData();
+        cuerpo = Object.fromEntries(formulario.entries());
+        imagen = formulario.get("imagen");
+      } else {
+        cuerpo = await request.json();
+      }
     } catch {
       return respuestaJson({ error: "Solicitud inválida." }, 400, origen);
     }
@@ -102,6 +134,14 @@ async function responderDesvios(request, env, origen, url) {
       return respuestaJson({ error: "Revisa los datos y la vigencia del desvío." }, 400, origen);
     }
 
+    if (imagen &&
+        (typeof imagen.arrayBuffer !== "function" || !tipoImagenValido(imagen.type) || imagen.size > 3 * 1024 * 1024)) {
+      return respuestaJson({ error: "La imagen debe ser JPG, PNG o WebP y pesar hasta 3 MB." }, 400, origen);
+    }
+    if (imagen && !env.DESVIOS_IMAGES) {
+      return respuestaJson({ error: "Almacenamiento de imágenes no configurado." }, 503, origen);
+    }
+
     const desvios = vigentes(await leerDesvios(env));
     const desvio = {
       id: crypto.randomUUID(),
@@ -111,10 +151,23 @@ async function responderDesvios(request, env, origen, url) {
       motivo,
       inicio: new Date(inicioMs).toISOString(),
       fin: new Date(finMs).toISOString(),
-      creado: new Date().toISOString()
+      creado: new Date().toISOString(),
+      tieneImagen: Boolean(imagen),
+      imagenActualizada: imagen ? new Date().toISOString() : ""
     };
+
+    if (imagen) {
+      await env.DESVIOS_IMAGES.put(claveImagen(desvio.id), imagen.stream(), {
+        httpMetadata: { contentType: imagen.type }
+      });
+    }
     desvios.push(desvio);
-    await guardarDesvios(env, desvios);
+    try {
+      await guardarDesvios(env, desvios);
+    } catch (error) {
+      if (imagen) await env.DESVIOS_IMAGES.delete(claveImagen(desvio.id));
+      throw error;
+    }
     return respuestaJson({ desvio }, 201, origen);
   }
 
@@ -126,6 +179,7 @@ async function responderDesvios(request, env, origen, url) {
       return respuestaJson({ error: "Desvío no encontrado." }, 404, origen);
     }
     await guardarDesvios(env, restantes);
+    if (env.DESVIOS_IMAGES) await env.DESVIOS_IMAGES.delete(claveImagen(id));
     return respuestaJson({ finalizado: true }, 200, origen);
   }
 
@@ -137,6 +191,10 @@ export default {
     const url = new URL(request.url);
     const origen = request.headers.get("Origin") || "";
     const origenPermitido = env.ALLOWED_ORIGIN;
+
+    if (request.method === "GET" && /^\/desvios\/[^/]+\/imagen$/.test(url.pathname)) {
+      return responderImagenDesvio(env, origenPermitido, url);
+    }
 
     if (origen !== origenPermitido) {
       return respuestaJson({ error: "Origen no autorizado." }, 403, origenPermitido);

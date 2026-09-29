@@ -8,3 +8,7 @@ ALLOWED_ORIGIN = "https://jjomunoz-source.github.io"
 [[kv_namespaces]]
 binding = "DESVIOS_KV"
 id = "dba6a648762c4285a8d793a5a0ca4c7d"
+
+[[r2_buckets]]
+binding = "DESVIOS_IMAGES"
+bucket_name = "desvios-imagenes"
