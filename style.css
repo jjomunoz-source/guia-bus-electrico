@@ -501,6 +501,31 @@ summary:focus-visible {
   white-space: pre-line;
 }
 
+.mapa-desvio {
+  display: block;
+  margin: 14px 0;
+  overflow: hidden;
+  border: 1px solid #d7dee4;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.mapa-desvio img {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+}
+
+.mapa-desvio span {
+  display: block;
+  padding: 9px 12px;
+  color: #1f2933;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+
 .panel-demo {
   margin-top: 22px;
   padding: 15px;

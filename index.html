@@ -251,6 +251,11 @@
         <label for="desvio-motivo">Motivo</label>
         <input id="desvio-motivo" maxlength="140" placeholder="Ej.: accidente, trabajos o inundación">
       </div>
+      <div class="campo campo-ancho">
+        <label for="desvio-imagen">Mapa del desvío (opcional)</label>
+        <input id="desvio-imagen" type="file" accept="image/jpeg,image/png,image/webp">
+        <small>JPG, PNG o WebP. La aplicación optimizará la imagen antes de subirla.</small>
+      </div>
         <button type="submit" class="btn-primario campo-ancho">Publicar desvío</button>
       </form>
       <p id="desvio-mensaje" class="mensaje-form" role="status" aria-live="polite"></p>

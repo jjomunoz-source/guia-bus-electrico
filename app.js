@@ -180,6 +180,51 @@ function obtenerDesviosApi() {
   return window.STU_DESVIOS_API || "";
 }
 
+function obtenerUrlMapaDesvio(desvio) {
+  const version = desvio.imagenActualizada || desvio.creado;
+  return `${obtenerDesviosApi()}/${encodeURIComponent(desvio.id)}/imagen?v=${encodeURIComponent(version)}`;
+}
+
+function cargarImagen(archivo) {
+  return new Promise((resolver, rechazar) => {
+    const imagen = new Image();
+    const url = URL.createObjectURL(archivo);
+    imagen.onload = () => {
+      URL.revokeObjectURL(url);
+      resolver(imagen);
+    };
+    imagen.onerror = () => {
+      URL.revokeObjectURL(url);
+      rechazar(new Error("No fue posible leer la imagen seleccionada."));
+    };
+    imagen.src = url;
+  });
+}
+
+async function optimizarMapaDesvio(archivo) {
+  if (!archivo) return null;
+  if (!/^image\/(jpeg|png|webp)$/.test(archivo.type)) {
+    throw new Error("Selecciona una imagen JPG, PNG o WebP.");
+  }
+  if (archivo.size > 12 * 1024 * 1024) {
+    throw new Error("La imagen original no puede superar 12 MB.");
+  }
+
+  const imagen = await cargarImagen(archivo);
+  const limite = 1800;
+  const escala = Math.min(1, limite / Math.max(imagen.naturalWidth, imagen.naturalHeight));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, Math.round(imagen.naturalWidth * escala));
+  canvas.height = Math.max(1, Math.round(imagen.naturalHeight * escala));
+  canvas.getContext("2d").drawImage(imagen, 0, 0, canvas.width, canvas.height);
+
+  const blob = await new Promise(resolver => canvas.toBlob(resolver, "image/webp", 0.82));
+  if (!blob || blob.size > 3 * 1024 * 1024) {
+    throw new Error("La imagen sigue siendo demasiado pesada. Usa una captura más pequeña.");
+  }
+  return new File([blob], "mapa-desvio.webp", { type: "image/webp" });
+}
+
 function obtenerDesviosVigentes() {
   const ahora = Date.now();
   return desviosActivos.filter(desvio => new Date(desvio.fin).getTime() > ahora);
@@ -246,6 +291,11 @@ function renderizarDesvios() {
         <h3>${escaparTexto(desvio.sector)}</h3>
         ${desvio.motivo ? `<p><strong>Motivo:</strong> ${escaparTexto(desvio.motivo)}</p>` : ""}
         <p class="instruccion-desvio">${escaparTexto(desvio.instrucciones)}</p>
+        ${desvio.tieneImagen ? `
+          <a class="mapa-desvio" href="${obtenerUrlMapaDesvio(desvio)}" target="_blank" rel="noopener">
+            <img src="${obtenerUrlMapaDesvio(desvio)}" alt="Mapa del desvío ${escaparTexto(desvio.servicio)}" loading="lazy">
+            <span>🗺️ Toca el mapa para ampliarlo</span>
+          </a>` : ""}
         <p class="actualizacion">Publicado ${formatearFecha(desvio.creado)}</p>
         ${desvioAdminPin ? `<button type="button" class="btn-secundario" data-cerrar-desvio="${desvio.id}">Finalizar desvío</button>` : ""}
       </article>`)
@@ -295,6 +345,7 @@ document.getElementById("desvio-form")?.addEventListener("submit", async evento 
   const inicio = document.getElementById("desvio-inicio").value;
   const fin = document.getElementById("desvio-fin").value;
   const mensaje = document.getElementById("desvio-mensaje");
+  const botonPublicar = evento.target.querySelector('button[type="submit"]');
 
   if (new Date(fin) <= new Date(inicio)) {
     mensaje.textContent = "La fecha de término debe ser posterior al inicio.";
@@ -312,10 +363,18 @@ document.getElementById("desvio-form")?.addEventListener("submit", async evento 
   };
 
   try {
+    botonPublicar.disabled = true;
+    mensaje.textContent = "Preparando publicación…";
+    mensaje.classList.remove("error");
+    const imagen = await optimizarMapaDesvio(document.getElementById("desvio-imagen").files[0]);
+    const formulario = new FormData();
+    Object.entries(cuerpo).forEach(([clave, valor]) => formulario.append(clave, valor));
+    if (imagen) formulario.append("imagen", imagen);
+
     const respuesta = await fetch(obtenerDesviosApi(), {
       method: "POST",
-      headers: { "Content-Type": "application/json", "X-Admin-Pin": desvioAdminPin },
-      body: JSON.stringify(cuerpo)
+      headers: { "X-Admin-Pin": desvioAdminPin },
+      body: formulario
     });
     const datos = await respuesta.json().catch(() => ({}));
     if (!respuesta.ok) throw new Error(datos.error || "No fue posible publicar el desvío.");
@@ -331,6 +390,8 @@ document.getElementById("desvio-form")?.addEventListener("submit", async evento 
       desvioAdminPin = "";
       mostrarSesionDesvios(false);
     }
+  } finally {
+    botonPublicar.disabled = false;
   }
 });
 

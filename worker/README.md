@@ -13,6 +13,8 @@ aplicación. La publicación y el cierre de desvíos requieren un PIN administra
 
 - KV con binding `DESVIOS_KV`, utilizado para sincronizar los desvíos entre todos
   los dispositivos.
+- Bucket R2 `desvios-imagenes` con binding `DESVIOS_IMAGES`, utilizado para los
+  mapas opcionales asociados a cada desvío.
 
 El PIN debe configurarse mediante `wrangler secret put DESVIOS_ADMIN_PIN`; nunca
 debe escribirse en el repositorio ni en el frontend.
