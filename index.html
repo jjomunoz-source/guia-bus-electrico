@@ -66,10 +66,10 @@
   <button class="menu-alerta" onclick="abrir('desvios-activos')">
     🚧 Desvíos activos <span id="menu-desvios-contador" class="contador">0</span>
   </button>
-  <button onclick="abrir('reporte-fallas')">🛠️ Reportar falla del bus</button>
+  <button hidden onclick="abrir('reporte-fallas')">🛠️ Reportar falla del bus</button>
   <button onclick="abrir('incidencias')">⚠️ Protocolo de Incidencias</button>
   <button onclick="abrir('recorridos')">🗺️ Recorridos Operativos</button>
-  <button class="menu-interno" onclick="abrir('gestion-operativa')">🔐 Gestión Operativa (demo)</button>
+  <button hidden class="menu-interno" onclick="abrir('gestion-operativa')">🔐 Gestión Operativa (demo)</button>
 </section>
 
 <section id="protocolo" class="modulo oculto">
@@ -266,7 +266,7 @@
   <button onclick="volver()">⬅ Volver al menú</button>
 </section>
 
-<section id="reporte-fallas" class="modulo oculto">
+<section id="reporte-fallas" class="modulo oculto" hidden>
   <p class="eyebrow">Registro y seguimiento</p>
   <h2>🛠️ Reportar falla del bus</h2>
 
@@ -372,7 +372,7 @@
   <button onclick="volver()">⬅ Volver al menú</button>
 </section>
 
-<section id="gestion-operativa" class="modulo oculto">
+<section id="gestion-operativa" class="modulo oculto" hidden>
   <p class="eyebrow">Acceso exclusivo para áreas autorizadas</p>
   <h2>🔐 Gestión Operativa</h2>
 
